@@ -1,0 +1,69 @@
+<div class="popup-header">
+<p class="title">THÔNG TIN TÀI KHOẢN </p>
+<button mat-icon-button (click)="closePopup()">
+  <mat-icon>clear</mat-icon>
+</button>
+</div>
+
+<form class="container" [formGroup]="userInfoForm">
+  <div class="col-left">
+    <div class="user-ava">
+      <div *ngIf="!data.avatar_url" class="default-ava-thin"></div>
+    </div>
+    <!-- <mat-label>Tên đăng nhập</mat-label> -->
+    <!-- <span>Tên đăng nhập: </span><span>{{userInfo.ten_dang_nhap}}</span> -->
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <span style="margin-right: 10px">Tên đăng nhập:</span>
+      <input matInput formControlName="ten_dang_nhap" class="user-name" />
+    </mat-form-field>
+  </div>
+  <div class="col-right">
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Họ và tên</mat-label>
+      <input matInput placeholder="Ex: Trần Vân Ngọc" formControlName="ten_day_du"/>
+      <!-- <div class="user-icon" matSuffix></div> -->
+      <mat-error *ngIf="userInfoForm.controls['ten_day_du'].touched && !userInfoForm.controls['ten_day_du'].valid">
+        <span *ngIf="userInfoForm.controls['ten_day_du'].errors?.['required']">Bạn chưa nhập họ và tên</span>
+        <span *ngIf="userInfoForm.controls['ten_day_du'].errors?.['pattern']">Họ và tên chỉ chứa các chữ cái</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Email</mat-label>
+      <input matInput email placeholder="Ex: hobo123@gmail.com" formControlName="email" />
+      <!-- <div class="user-icon" matSuffix></div> -->
+      <mat-error *ngIf="!userInfoForm.controls['email'].valid">
+        <span *ngIf="userInfoForm.controls['email'].errors?.['pattern']">Bạn nhập sai định dạng email</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Số điện thoại</mat-label>
+      <input matInput placeholder="Ex: hobo123" formControlName="so_dien_thoai" />
+      <mat-error *ngIf="!userInfoForm.controls['so_dien_thoai'].valid">
+        <span *ngIf="userInfoForm.controls['so_dien_thoai'].errors?.['pattern']">Bạn nhập sai định dạng số điện
+          thoại</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Chức vụ</mat-label>
+      <input matInput placeholder="Ex: Tổ trưởng" formControlName="chuc_vu" />
+      <mat-error *ngIf="userInfoForm.controls['chuc_vu'].touched && !userInfoForm.controls['chuc_vu'].valid">
+        <span *ngIf="userInfoForm.controls['chuc_vu'].errors?.['pattern']">Chức vụ chỉ chứa các chữ cái</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Nhóm</mat-label>
+      <mat-select formControlName="nhom" matInput multiple>
+        <mat-option *ngFor="let nhom of nhomList" [value]="nhom.id_nhom">{{nhom.ten_nhom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button class="form-row" color="accent" [style.color]="'white'" (click)="onEdit()" *ngIf="!isEditing">THAY ĐỔI THÔNG TIN</button>
+    <button mat-flat-button class="form-row" color="accent" [style.color]="'white'" *ngIf="isEditing"
+     [disabled]="!userInfoForm.dirty || userInfoForm.invalid" (click)="onSave()">LƯU</button>
+  </div>
+</form>

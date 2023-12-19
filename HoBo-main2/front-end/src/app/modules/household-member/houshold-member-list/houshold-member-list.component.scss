@@ -1,0 +1,85 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  padding: 0 16px;
+
+  .action-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    min-width: 800px;
+
+    .mat-row {
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: rgb(240, 240, 240);
+        cursor: default;
+      }
+    }
+
+    .mat-row, .mat-header-row, .mat-footer-row {
+      height: 36px;
+    }
+
+    .mat-cell, .mat-header-cell {
+      padding: 0 16px;
+    }
+
+    .mat-column {
+      &-checkbox {
+        width: 16px;
+      }
+      &-ten_dang_nhap {
+        &:not(.mat-header-cell){
+        color: $main-dark;
+        text-decoration: underline solid $main-dark;
+        cursor: pointer;
+        }
+      }
+      &-email {
+        &.not-null {
+          color: $info-dark;
+        }
+      }
+      &-so_dien_thoai {
+        &.not-null {
+          color: $info-dark;
+        }
+      }
+      &-nhom {
+        width: 250px;
+      }
+      &-chuc_vu {
+        &.not-null {
+          color: $info-dark;
+        }
+      }
+      &-action {
+        width: 36px;
+      }
+    }
+  }
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+::ng-deep .mat-form-field-infix {
+  border-top: 0.34375em solid transparent;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  margin-top: -0.45rem !important;
+}
+
+.custom-btn {
+  height: 45.06px;
+}

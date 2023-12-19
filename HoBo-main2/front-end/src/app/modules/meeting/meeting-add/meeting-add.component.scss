@@ -1,0 +1,10 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  display: grid;
+  margin: 0 24px 24px 24px;
+
+  form {
+    display: grid;
+  }
+}

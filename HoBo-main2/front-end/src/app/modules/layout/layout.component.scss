@@ -1,0 +1,179 @@
+@import '../../../assets/theme/variable.scss';
+
+.home-icon {
+  content: url('../../../assets/icon/home.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.calendar-icon {
+  content: url('../../../assets/icon/calendar.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.nhan-khau-icon {
+  content: url('../../../assets/icon/nhan-khau.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.nguoi-dung-icon {
+  content: url('../../../assets/icon/nguoi-dung.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.nhom-nguoi-dung-icon {
+  content: url('../../../assets/icon/nhom-nguoi-dung.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.khoan-phi-icon {
+  content: url('../../../assets/icon/bank.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.task-icon {
+  content: url('../../../assets/icon/task.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+.bank-icon {
+  content: url('../../../assets/icon/bank.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.thong-ke-icon {
+  content: url('../../../assets/icon/thong-ke.svg');
+  height: 16px;
+  margin-right: 4px;
+}
+
+.default-ava {
+  content: url('../../../assets/icon/user.svg');
+  height: 36px;
+  margin: 14px;
+}
+
+.app-logo {
+  content: url('../../../assets/icon/logo-app.svg');
+  // height: 60px;
+}
+.header {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  top: 0%;
+  justify-content: space-between;
+  // border-bottom-right-radius: 0.5rem;
+  // border-bottom-left-radius: 0.5rem;
+  vertical-align: middle;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16);
+  z-index: 100;
+
+  .header-col {
+    &.left {
+      display: flex;
+
+      .app-logo {
+        height: 64px;
+        width: 64px;
+        margin: 0 16px;
+      }
+
+      .app-select {
+        display: grid;
+
+        .app-name {
+          padding: 6px;
+          width: fit-content;
+          font-size: 20px;
+          cursor: pointer;
+        }
+
+        .app-feature {
+          display: flex;
+
+          p {
+            display: flex;
+            padding: 6px;
+            margin: auto;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    &.right {
+      display: flex;
+      margin-right: 16px;
+
+      .user-name {
+        line-height: 64px;
+        font-size: 16px;
+        cursor: pointer;
+        // margin: 0 16px;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 32px;
+  position: fixed;
+  bottom: 0%;
+  justify-content: center;
+  // border-top-right-radius: 0.5rem;
+  // border-top-left-radius: 0.5rem;
+  vertical-align: middle;
+  box-shadow:0px -1px 2px 0px rgba(0,0,0,0.16);
+  z-index: 100;
+
+  .more {
+    margin: 0 30px;
+    line-height: 32px;
+    vertical-align: middle;
+    color: $info;
+    font-weight: 550;
+    cursor: pointer;
+
+    &:hover {
+      color: $info-dark;
+    }
+  }
+
+  .text {
+    margin: 0 30px;
+    cursor: pointer;
+    .name {
+      font-weight: 550;
+      line-height: 32px;
+    }
+    .year {
+      line-height: 32px;
+      font-weight: 550;
+      color: gray;
+    }
+  }
+}
+
+::ng-deep .mat-typography p.header-text__2 {
+  margin: 0;
+  color: $main;
+
+  &:hover {
+    color: $main-dark;
+    background-color: $main-bg;
+  }
+}

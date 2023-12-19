@@ -1,0 +1,74 @@
+<div class="container">
+    <p style="font-size: 20px; justify-content: center; display: flex; margin-bottom: 32px;">ĐÁNH GIÁ GIA ĐÌNH VĂN HÓA</p>
+    <div *ngIf="checkedList.length > 0">
+        <mat-form-field class="example-form-field">
+          <mat-label>Năm đánh giá</mat-label>
+          <input matInput type="text" [(ngModel)]="year">
+          
+          <button *ngIf="year" matSuffix mat-icon-button aria-label="Clear" (click)="year=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+          <mat-error *ngIf="year && !isNumber(year)">
+            <span *ngIf="year && !isNumber(year)">Năm đánh giá phải là một số</span>
+          </mat-error>
+          <mat-error *ngIf="!(year && !isNumber(year)) && (year && !checkValidYear(year))">
+            <span *ngIf="!(year && !isNumber(year)) && year && !checkValidYear(year)">Năm đánh giá phải từ 2018 đến hiện tại</span>
+          </mat-error>
+    </div>
+    <div class="action-row">
+        <span style="color: #fb5a47; margin-right: 12px;" *ngIf="checkedList.length > 0">{{checkedList.length}} hộ khẩu được chọn</span>
+        <button mat-flat-button color="accent" [disabled]="checkedList.length == 0 || year === ''" (click)="onAddEvaluation()" style="color: white">Thêm đánh giá</button>
+    </div>
+    <table fixedLayout="true" mat-table matSort [dataSource]="dataSource">
+    
+        <ng-container matColumnDef="checkbox">
+          <th mat-header-cell *matHeaderCellDef>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox [checked]="checkedList.includes(element.id_ho_khau)"
+              (change)="changeChecked(element.id_ho_khau)"></mat-checkbox>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="ma_ho_khau">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã hộ khẩu</th>
+          <td mat-cell *matCellDef="let element" class="text-ellipsis" (dblclick)="openEvaluationInfo(element.id_cuoc_hop)">
+            {{element.ma_ho_khau}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="ten_chu_ho">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ tên chủ hộ</th>
+          <td mat-cell *matCellDef="let element" class="text-ellipsis" > {{element.ten_chu_ho}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="dia_chi">
+          <th mat-header-cell *matHeaderCellDef>Địa chỉ</th>
+          <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.dia_chi}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nam_danh_gia">
+            <th mat-header-cell *matHeaderCellDef>Năm đánh giá</th>
+            <td mat-cell *matCellDef="let element" class="text-ellipsis">{{element.cac_nam_da_danh_gia}}</td>
+          </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="actionMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #actionMenu="matMenu">
+              <p mat-menu-item style="margin-bottom: 0;"(click)="openEvaluationInfo(element.id_ho_khau)">Xem chi tiết</p>
+            </mat-menu>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+      </mat-paginator>
+  </div>
+  

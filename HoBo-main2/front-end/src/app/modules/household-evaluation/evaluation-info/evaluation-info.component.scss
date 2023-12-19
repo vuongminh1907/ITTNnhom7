@@ -1,0 +1,57 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+    display: grid;
+    margin: 0 24px 24px 24px;
+  
+    .form-container {
+
+        width: 100%;
+        background-color: white;
+        justify-content: center;
+        margin: 0 auto;
+    
+    
+        .block {
+          border-radius: 0.5rem;
+          border: 1px solid $disable;
+          padding: 32px 32px 14px 32px;
+          margin: 5px;
+          &:not(:first-child) {
+            margin-top: 24px;
+          }
+          .row {
+            display: flex;
+            justify-content: space-between;
+    
+            .mat-form-field {
+              width: calc(50% - 16px);
+            }
+          }
+
+          .none-border {
+            border: 0;
+        
+            td {
+              padding-bottom: 12px !important;
+            }
+            .title {
+              font-weight: 500;
+              padding-right: 24px;
+              vertical-align: baseline;
+            }
+        
+            p {
+              &:last-child {
+                margin-bottom: 0px !important;
+              }
+              &:not(:last-child) {
+                margin-bottom: 6px !important;
+              }
+            }
+          }
+        }
+    
+      }
+  }
+  

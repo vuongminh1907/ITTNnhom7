@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="action-row">
+    <button mat-flat-button color="accent" (click)="onAdd()" style="color: white"  *ngIf="checkedList.length == 0">Khai tử</button>
+    <div *ngIf="checkedList.length > 0">
+      <span style="color: #fb5a47; margin-right: 12px;">{{checkedList.length}} tạm trú được chọn</span>
+      <button mat-flat-button color="warn" (click)="onDelete(checkedList)"
+        style="color: white">Xoá</button>
+    </div>
+  </div>
+  <table fixedLayout="true" mat-table matSort [dataSource]="dataSource">
+    <ng-container matColumnDef="checkbox">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox [checked]="checkedList.includes(element.id)" (change)="changeChecked(element.id)"></mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="so_giay_khai_tu" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Số giấy khai tử</th>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis main-col-text" (dblclick)="onOpen(element.id)">
+        {{element.so_giay_khai_tu}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ten_nguoi_chet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên người mất</th>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ten_nguoi_chet}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ngay_khai">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày khai</th>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_khai | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ngay_chet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày mất</th>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_chet | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ly_do_chet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lý do mất</th>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis" [class.null-item]="!element.ly_do_chet"> {{!!element.ly_do_chet ? element.ly_do_chet : 'N/A'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="accent" [matMenuTriggerFor]="actionMenu">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #actionMenu="matMenu">
+            <p style="margin-bottom: 0;" mat-menu-item (click)="onOpen(element.ID)">Xem chi tiết</p>
+            <p style="color: #fb5a47; margin-bottom: 0;" mat-menu-item (click)="onDelete([element.id])">Xoá</p>
+          </mat-menu>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div *ngIf="data.length == 0" class="no-data"> Không có dữ liệu để hiến thị</div>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

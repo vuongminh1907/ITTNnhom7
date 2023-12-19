@@ -1,0 +1,9 @@
+# Visual Studio Code
+.vscode/*
+back-end/venv/*
+back-end/.env
+*.pyc
+*.bak
+.env
+
+venv

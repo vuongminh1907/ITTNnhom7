@@ -1,0 +1,34 @@
+<div class="popup-header">
+    <p class="title">THÔNG TIN ĐÁNH GIÁ HỘ KHẨU </p>
+    <button mat-icon-button (click)="closePopup()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+<div class="container">
+    <p>Mã hộ khẩu: {{data.info.ma_ho_khau}}</p>
+    <p>Tên chủ hộ: {{data.info.ten_chu_ho}}</p>
+    <p>Địa chỉ: {{data.info.dia_chi}}</p>
+    <div *ngFor="let eval of data.evaluation_list" class="form-container">
+        <div class="block">
+            <table class="none-border">
+                <tr>
+                  <td class="title">Năm đánh giá</td>
+                  <td>{{eval.nam_danh_gia}}</td>
+                </tr>
+                <tr>
+                  <td class="title">Số lần tham dự</td>
+                  <td>{{eval.so_lan_tham_du}}</td>
+                </tr>
+                <tr>
+                  <td class="title">Số lần được mời</td>
+                  <td>{{eval.so_lan_duoc_moi}}</td>
+                </tr>
+                <tr>
+                  <td class="title">Đánh giá</td>
+                  <td>{{eval.gia_dinh_van_hoa}}</td>
+                </tr>
+              </table>
+        </div>
+
+    </div>
+</div>

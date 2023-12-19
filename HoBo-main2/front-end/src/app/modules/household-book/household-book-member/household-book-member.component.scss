@@ -1,0 +1,55 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  padding: 0px 0px 0px 0px;
+
+  .form-container {
+    &__1 {
+      width: 45%;
+    }
+
+    &__2 {
+      width: 55%;
+    }
+    background-color: white;
+    justify-content: space-between;
+    margin: 0 auto;
+
+
+    .block {
+      border-radius: 0.5rem;
+      border: 1px solid $disable;
+      padding: 32px 32px 14px 32px;
+      &:not(:first-child) {
+        margin-top: 24px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+
+        .mat-form-field {
+          width: calc(50% - 0px);
+        }
+      }
+
+      .heading {
+        justify-content: center;
+      }
+    }
+
+  }
+
+  .center-row {
+    margin-top: 16px;
+    display: grid;
+    justify-content: space-around;
+  }
+  table {
+    width: 100%;
+  }
+  .search-field {
+    width: 150px;
+    margin-right: 10px;
+  }
+}
+

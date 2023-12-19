@@ -1,0 +1,73 @@
+<div class="header">
+  <div class="header-col left">
+    <div class="app-logo">Logo app</div>
+    <div class="app-select">
+      <div class="app-name header-text__1">BlueMoon App </div>
+      <div class="app-feature">
+        <p class="header-text__2" routerLink="./household-book">
+          <span class="home-icon"></span>
+          <span>Hộ khẩu</span>
+        </p>
+        <p class="header-text__2" routerLink="./household-member">
+          <span class="nhan-khau-icon"></span>
+          <span>Nhân khẩu</span>
+        </p>
+        <p class="header-text__2" routerLink="./statistics">
+          <span class="thong-ke-icon"></span>
+          <span>Thống kê</span>
+        </p>
+        <!-- <p class="header-text__2" routerLink="./meeting">
+          <span class="calendar-icon"></span>
+          <span>Lịch họp</span>
+        </p> -->
+        <p class="header-text__2" routerLink="./household-evaluation">
+          <span class="task-icon"></span>
+          <span>Đánh giá gia đình văn hóa</span>
+        </p>
+        <p class="header-text__2" routerLink="./admin/user-list">
+          <span class="nguoi-dung-icon"></span>
+          <span>Người dùng</span>
+        </p>
+        <p class="header-text__2" routerLink="./admin/role-group-list">
+          <span class="nhom-nguoi-dung-icon"></span>
+          <span>Nhóm người dùng</span>
+        </p>
+        <p class="header-text__2" routerLink="./admin/khoan-phi-list">
+          <span class="khoan-phi-icon"></span>
+          <span>Khoản phí</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-col right">
+    <div class="user-name header-text__1" *ngIf="isLoggedIn">{{user.ten_day_du}}</div>
+    <div class="user-ava" [matMenuTriggerFor]="user_menu">
+      <div *ngIf="!user.avatar_url" class="default-ava"></div>
+    </div>
+    <mat-menu #user_menu="matMenu">
+      <p class="header-text__2" mat-menu-item (click)="openUserInfo()">Thông tin tài khoản</p>
+      <p class="header-text__2" mat-menu-item (click)="onLogout()">Đăng xuất</p>
+    </mat-menu>
+    <!-- <div class="setting-icon"></div> -->
+  </div>
+</div>
+<div class="footer">
+  <div class="text">
+    <span class="year">2023 - </span>
+    <span class="name">Nhóm 7 - ITTN</span>
+  </div>
+  <div class="more">Về chúng tôi</div>
+  <div class="more">Liên hệ:Nhóm 7 ITTN</div>
+</div>
+<div style="position: relative;
+  top: 50%;
+  left: 50%;
+  width: fit-content;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: gray;"
+  *ngIf="!isLoggedIn">
+  Hãy đăng nhập để tiếp tục
+</div>
+<router-outlet *ngIf="isLoggedIn"></router-outlet>

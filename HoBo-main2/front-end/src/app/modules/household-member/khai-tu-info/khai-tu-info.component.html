@@ -1,0 +1,73 @@
+<div class="popup-header">
+  <p class="title">THÔNG TIN KHAI TỬ</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <table class="none-border">
+    <tr>
+      <td class="title">Số giấy khai tử</td>
+      <td style="display:flex; width: fit-content; max-width: 350px; margin: 0">{{data.so_giay_khai_tu}}</td>
+    </tr>
+    <tr>
+      <td class="title">Người mất</td>
+      <td style="display: grid">
+        <table class="sub-table">
+          <tr>
+            <td class="title">Họ tên</td>
+            <td>{{data.ten_nguoi_chet}}</td>
+          </tr>
+          <tr>
+            <td class="title">Ngày sinh</td>
+            <td>{{data.ngay_sinh_nguoi_chet | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+          <tr>
+            <td class="title">Địa chỉ</td>
+            <td>{{data.dia_chi_nguoi_chet}}</td>
+          </tr>
+          <tr>
+            <td class="title">CMT/CCCD</td>
+            <td [class.null-item]="!data.cmt_nguoi_chet">{{!!data.cmt_nguoi_chet ? data.cmt_nguoi_chet : 'N/A'}}</td>
+          </tr>
+        </table>
+      </td>
+    <tr>
+      <tr>
+        <td class="title">Người khai</td>
+        <td style="display: grid">
+          <table class="sub-table">
+            <tr>
+              <td class="title">Họ tên</td>
+              <td>{{data.ten_nguoi_khai}}</td>
+            </tr>
+            <tr>
+              <td class="title">Ngày sinh</td>
+              <td>{{data.ngay_sinh_nguoi_khai | date: 'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+              <td class="title">Địa chỉ</td>
+              <td>{{data.dia_chi_nguoi_khai}}</td>
+            </tr>
+            <tr>
+              <td class="title">CMT/CCCD</td>
+              <td [class.null-item]="!data.cmt_nguoi_khai">{{!!data.cmt_nguoi_khai ? data.cmt_nguoi_khai : 'N/A'}}</td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+    <tr>
+      <td class="title">Ngày mất</td>
+      <td style="display:flex; width: fit-content; max-width: 350px; margin: 0">{{data.ngay_chet | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+    <tr>
+      <td class="title">Ngày khai</td>
+      <td style="display:flex; width: fit-content; max-width: 350px; margin: 0">{{data.ngay_khai | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+    <tr>
+      <td class="title">Lý do mất</td>
+      <td [class.null-item]="!data.ly_do_chet" style="display:flex; width: fit-content; max-width: 350px; margin: 0">{{!!data.ly_do_chet ? data.ly_do_chet : 'N/A'}}</td>
+    </tr>
+  </table>
+</div>

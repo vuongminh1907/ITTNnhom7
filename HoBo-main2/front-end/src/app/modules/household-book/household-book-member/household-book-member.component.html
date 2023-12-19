@@ -1,0 +1,114 @@
+<div class="container" style="display: flex;">
+  <div class="form-container__1">
+      <div class="block" style="margin-right: 2px;">
+          <p class="heading">DANH SÁCH NHÂN KHẨU</p>
+          <div class="action-row">
+              <div>
+                <mat-form-field class="search-field">
+                  <mat-label>Tìm kiếm</mat-label>
+                  <input matInput type="text" (keyup)="applyFilter($event)" [(ngModel)]="search">
+                </mat-form-field>
+              </div>
+            </div>
+          <table fixedLayout="false" mat-table matSort [dataSource]="dataSource">
+              <ng-container matColumnDef="checkbox">
+                <th mat-header-cell *matHeaderCellDef>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-checkbox (change)="checkedLeft(element)"></mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ho_ten" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ và tên</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis">
+                  {{element.ho_ten}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ngay_sinh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_sinh | date:'dd-MM-yyyy'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="gioi_tinh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.gioi_tinh}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="so_cmt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>CMT/CCCD</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis" [class.null-item]="!element.so_cmt">{{!!element.so_cmt ? element.so_cmt : 'N/A'}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+          </mat-paginator>
+      </div>
+
+  </div>
+  <div class="form-container__2">
+      <div class="block" style="margin-left: 2px;">
+          <p class="heading">DANH SÁCH THÀNH VIÊN HỘ KHẨU</p>
+          <div class="action-row">
+            <div>
+              <button mat-flat-button color="accent" style="color: white; margin-bottom: 21.31px;"
+                [disabled]="!validParams" (click)="onAddMember()">Thay đổi thành viên</button>
+            </div>
+          </div>
+          <table fixedLayout="false" mat-table matSort [dataSource]="dataSourceRight">
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-icon style="transform: translateX(4px);" (click)="deleteMember(element)">clear</mat-icon>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ho_ten" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ và tên</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis">
+                  {{element.ho_ten}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ngay_sinh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_sinh | date:'dd-MM-yyyy'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="gioi_tinh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.gioi_tinh}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="so_cmt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>CMT/CCCD</th>
+                <td mat-cell *matCellDef="let element" class="text-ellipsis" [class.null-item]="!element.so_cmt">{{!!element.so_cmt ? element.so_cmt : 'N/A'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="quan_he_voi_chu_ho">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Quan hệ với chủ hộ</th>
+                <td mat-cell *matCellDef="let element, index as index" class="text-ellipsis">
+                  <input matInput required placeholder="Nhập quan hệ với chủ hộ" [ngModel]="dataMap[element.ID]" (ngModelChange)="changeQh(element.ID, $event)"/>
+                </td>
+              </ng-container>
+
+              <!-- <ng-container matColumnDef="da_tham_gia">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Đã tham gia</th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-slide-toggle [checked]="slideToggleListTemp.includes(element.id_nhan_khau)" (change)="changeSlideToggle(element.id_nhan_khau)">
+                  </mat-slide-toggle>
+                </td>
+              </ng-container> -->
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsRight"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsRight;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+          </mat-paginator>
+      </div>
+  </div>
+
+</div>

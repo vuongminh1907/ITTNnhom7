@@ -1,0 +1,25 @@
+@import '../../../assets/theme/variable.scss';
+
+.form-container {
+  padding: 16px 18px 32px 18px;
+  max-width: 700px;
+  background-color: white;
+  justify-content: center;
+
+  .fields {
+    display: flex;
+
+    .column {
+      padding: 0 14px;
+      display: grid;
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}
+
+.center-row {
+  margin-top: 16px;
+  display: grid;
+  justify-content: space-around;
+}

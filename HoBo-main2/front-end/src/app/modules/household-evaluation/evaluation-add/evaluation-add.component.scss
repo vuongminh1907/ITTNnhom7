@@ -1,0 +1,66 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  padding: 88px 48px 48px 48px;
+
+  .action-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    min-width: 800px;
+
+    .mat-row {
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: rgb(240, 240, 240);
+        cursor: default;
+      }
+    }
+
+    .mat-row,
+    .mat-header-row,
+    .mat-footer-row {
+      height: 36px;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+      padding: 0 16px;
+    }
+
+    .mat-column {
+      &-checkbox {
+        width: 16px;
+      }
+
+      &-ten_nhom {
+        width: 20%;
+        &:not(.mat-header-cell) {
+          color: $main-dark;
+          text-decoration: underline solid $main-dark;
+          cursor: pointer;
+        }
+      }
+
+      &-mo_ta {
+        width: 20%;
+      }
+
+      &-action {
+        width: 36px;
+      }
+    }
+  }
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

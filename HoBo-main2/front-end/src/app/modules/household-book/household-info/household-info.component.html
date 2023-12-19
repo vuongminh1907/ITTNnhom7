@@ -1,0 +1,72 @@
+<div class="popup-header">
+  <p class="title">THÔNG TIN HỘ KHẨU</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <table class="none-border">
+    <tr>
+      <td class="title">Mã hộ khẩu</td>
+      <td>{{data.ma_ho_khau}}</td>
+    </tr>
+    <tr>
+      <td class="title">Mã khu vực</td>
+      <td>{{data.ma_khu_vuc}}</td>
+    </tr>
+    <tr>
+      <td class="title">Địa chỉ</td>
+      <td>{{data.dia_chi}}</td>
+    </tr>
+    <tr>
+      <td class="title">Tên chủ hộ</td>
+      <td>{{data.ten_chu_ho}}</td>
+    </tr>
+    <tr>
+      <td class="title">Thành viên trong hộ</td>
+      <td *ngFor="let member of data.thanh_vien_trong_ho" style="display: grid">
+        <table class="sub-table">
+          <tr>
+            <td class="title">Tên thành viên</td>
+            <td>{{member.ten_thanh_vien}}</td>
+          </tr>
+          <tr>
+            <td class="title">Quan hệ với chủ hộ</td>
+            <td>{{member.quan_he_voi_chu_ho}}</td>
+          </tr>
+        </table>
+      </td>
+    <tr>
+      <td class="title">Ngày lập</td>
+      <td>{{data.ngay_lap | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+    <tr>
+      <td class="title">Ngày chuyển đi</td>
+      <td [class.null-item]="!data.ngay_chuyen_di">{{!!data.ngay_chuyen_di ? (data.ngay_chuyen_di | date: 'dd/MM/yyyy')
+        : 'N/A'}}</td>
+    </tr>
+    <tr>
+      <td class="title">Lý do chuyển</td>
+      <td [class.null-item]="!data.ly_do_chuyen">{{!!data.ly_do_chuyen ? data.ly_do_chuyen : 'N/A'}}</td>
+    </tr>
+  </table>
+  <p style="
+    line-height: 26px;
+    font-size: 18px;
+    font-style: italic;
+    text-decoration: underline;" *ngIf="history.length > 0">Lịch sử thay đổi hộ khẩu</p>
+  <div *ngIf="history.length > 0">
+    <table class="none-border" *ngFor="let h of history">
+      <tr>
+        <td class="title">Ngày chỉnh sửa</td>
+        <td>{{h.ngay_chinh_sua}}</td>
+      </tr>
+      <tr>
+        <td class="title">Thông tin chỉnh sửa</td>
+        <td>{{h.thong_tin_chinh_sua}}</td>
+      </tr>
+      <br>
+    </table>
+  </div>
+</div>

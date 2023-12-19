@@ -1,0 +1,121 @@
+<div class="container" style="display: flex;">
+    <div class="form-container">
+        <div class="block" style="margin-right: 2px;">
+            <p class="heading">DANH SÁCH NHÂN KHẨU</p>
+            <div class="action-row">
+                <div>
+                  <mat-form-field class="search-field">
+                    <mat-label>Tìm kiếm</mat-label>
+                    <input matInput type="text" (keyup)="applyFilter($event)" [(ngModel)]="search">
+                    <!-- <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                    <button *ngIf="search" matSuffix mat-icon-button aria-label="Search" (click)="search=''">
+                      <mat-icon>search</mat-icon>
+                    </button> -->
+                  </mat-form-field>
+                  <span *ngIf="checkedListLeft.length > 0" style="color: #fb5a47; margin-right: 12px;">{{checkedListLeft.length}} nhân khẩu được chọn</span>
+                  <button mat-flat-button color="accent" [disabled]="checkedListLeft.length <= 0" (click)="onAddInvited(checkedListLeft)" style="color: white">Thêm người tham dự</button>
+                </div>
+              </div>
+            <table fixedLayout="false" mat-table #leftTbSort="matSort" matSort [dataSource]="dataSource">
+
+                <ng-container matColumnDef="checkbox">
+                  <th mat-header-cell *matHeaderCellDef>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [checked]="checkedListLeft.includes(element.id_nhan_khau)"
+                      (change)="changeCheckedLeft(element.id_nhan_khau)"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ho_ten" >
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ và tên    </th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis">
+                    {{element.ho_ten}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ngay_sinh">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_sinh | date:'dd-MM-yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="gioi_tinh">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.gioi_tinh}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="so_cmt">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>CMT/CCCD</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis" [class.null-item]="!element.so_cmt">{{!!element.so_cmt ? element.so_cmt : 'N/A'}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #leftPaginator="matPaginator" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </div>
+    <div class="form-container">
+        <div class="block" style="margin-left: 2px;">
+            <p class="heading">DANH SÁCH NHÂN KHẨU ĐƯỢC MỜI</p>
+            <div class="action-row" style="display: flex;">
+                <div style="margin-right: 3px;">
+                  <span *ngIf="checkedListRight.length > 0" style="color: #fb5a47; margin-right: 12px;">{{checkedListRight.length}} nhân khẩu được chọn</span>
+                  <button mat-flat-button color="accent" [disabled]="checkedListRight.length <= 0" (click)="onDeleteInvited(checkedListRight)" style="color: white">Xóa lời mời</button>
+                </div>
+                <div style="margin-left: 3px;">
+                  <button mat-flat-button color="accent" [disabled]="!changed" (click)="onChangeAttendants(slideToggleListTemp)" style="color: white">Lưu người tham gia</button>
+                </div>
+              </div>
+            <table fixedLayout="false" mat-table #rightTbSort="matSort" matSort [dataSource]="dataSourceRight">
+
+                <ng-container matColumnDef="checkbox">
+                  <th mat-header-cell *matHeaderCellDef>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [checked]="checkedListRight.includes(element.id_nhan_khau)"
+                      (change)="changeCheckedRight(element.id_nhan_khau)"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ho_ten" >
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Họ và tên</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis">
+                    {{element.ho_ten}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ngay_sinh">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ngay_sinh | date:'dd-MM-yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="gioi_tinh">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.gioi_tinh}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="so_cmt">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>CMT/CCCD</th>
+                  <td mat-cell *matCellDef="let element" class="text-ellipsis" [class.null-item]="!element.so_cmt">{{!!element.so_cmt ? element.so_cmt : 'N/A'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="da_tham_gia">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Đã tham gia</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle [checked]="slideToggleListTemp.includes(element.id_nhan_khau)" (change)="changeSlideToggle(element.id_nhan_khau)">
+                    </mat-slide-toggle>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsRight"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsRight;"></tr>
+            </table>
+            <mat-paginator #rightPaginator="matPaginator" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+
+  </div>

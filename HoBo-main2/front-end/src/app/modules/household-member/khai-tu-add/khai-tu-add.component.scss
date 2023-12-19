@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  margin: 0 24px 24px 24px;
+  max-height: calc(80vh - 100px);
+
+  .form-row {
+    margin-bottom: 8px;
+  }
+}

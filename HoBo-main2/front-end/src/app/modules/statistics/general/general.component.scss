@@ -1,0 +1,116 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  padding: 88px 48px 48px 48px;
+
+  .action-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .border-block {
+    border-color: lightgray;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    width: 20rem;
+    margin-right: 10px;
+
+    #block1, #block2{
+      display: inline;
+    }
+  }
+
+  .example-margin {
+    margin: 0 10px;
+  }
+  
+  mat-grid-list {
+    justify-content: space-between;
+    mat-grid-tile {
+        border-color: $main;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 2px;
+        // display: flex;
+        
+
+        mat-icon {
+            color: $main;
+            transform: scale(3);
+            display: inline-flex;
+            vertical-align: top;
+            
+        }
+
+        .stat-text__2 {
+            margin: 0;
+            color: $main;
+            font-size: x-large;
+          }
+ 
+      }
+      table {
+        width: 100%;
+        min-width: 800px;
+    
+        .mat-row {
+          &:hover,
+          &:focus,
+          &:focus-within {
+            background-color: rgb(240, 240, 240);
+            cursor: default;
+          }
+        }
+    
+        .mat-row, .mat-header-row, .mat-footer-row {
+          height: 36px;
+        }
+    
+        .mat-cell, .mat-header-cell {
+          padding: 0 16px;
+        }
+    
+      }
+  }
+
+  
+
+  table {
+    width: 100%;
+    min-width: 800px;
+
+    .mat-row {
+
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: rgb(240, 240, 240);
+        cursor: default;
+      }
+    }
+
+    .mat-row,
+    .mat-header-row,
+    .mat-footer-row {
+      height: 36px;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+      padding: 0 16px;
+    }
+
+  }
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  margin-top: 1rem !important;
+}

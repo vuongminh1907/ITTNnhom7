@@ -1,0 +1,34 @@
+<div class="popup-header">
+  <p class="title">THÔNG TIN NHÓM </p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <table class="none-border">
+    <tr>
+      <td class="title">Tên nhóm</td>
+      <td>{{data.group.ten_nhom}}</td>
+    </tr>
+    <tr>
+      <td class="title">Mô tả</td>
+      <td [class.null-item]="!data.group.mo_ta">{{!!data.group.mo_ta ? data.group.mo_ta : 'N/A'}}</td>
+    </tr>
+    <tr>
+      <td class="title">Chức năng</td>
+      <td>
+        <p *ngFor="let chucNang of data.group.role_list">{{chucNang.ten_chuc_nang}}</p>
+      </td>
+    </tr>
+    <tr *ngIf="data.mode === 'more'">
+      <td class="title">Người dùng</td>
+      <td>
+        <p *ngIf="data.group.user_list.length == 0; else user" class="null-item">'N/A'</p>
+        <ng-template #user>
+          <p *ngFor="let nguoiDung of data.group.user_list">{{nguoiDung.ten_day_du}} ({{nguoiDung.ten_dang_nhap}})</p>
+        </ng-template>
+      </td>
+    </tr>
+  </table>
+</div>

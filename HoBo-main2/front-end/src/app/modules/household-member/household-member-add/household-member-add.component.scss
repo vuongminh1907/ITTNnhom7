@@ -1,0 +1,39 @@
+@import '../../../../assets/theme/variable.scss';
+
+.container {
+  padding: 88px 48px 48px 48px;
+
+  .form-container {
+
+    width: 80vw;
+    background-color: white;
+    justify-content: center;
+    margin: 0 auto;
+
+
+    .block {
+      border-radius: 0.5rem;
+      border: 1px solid $disable;
+      padding: 32px 32px 14px 32px;
+      &:not(:first-child) {
+        margin-top: 24px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+
+        .mat-form-field {
+          width: calc(50% - 16px);
+        }
+      }
+    }
+
+  }
+
+  .center-row {
+    margin-top: 16px;
+    display: grid;
+    justify-content: space-around;
+  }
+}
+

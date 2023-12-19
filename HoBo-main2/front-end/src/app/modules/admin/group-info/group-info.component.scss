@@ -1,0 +1,33 @@
+// @import '../../../assets/theme/variable.scss';
+
+.container {
+  display: flex;
+  margin: 0 24px 24px 24px;
+  .col-right, .col-left{
+    display: grid;
+    width: 300px;
+    padding: 14px;
+  }
+
+  .none-border {
+    border: 0;
+
+    td {
+      padding-bottom: 12px !important;
+    }
+    .title {
+      font-weight: 500;
+      padding-right: 24px;
+      vertical-align: baseline;
+    }
+
+    p {
+      &:last-child {
+        margin-bottom: 0px !important;
+      }
+      &:not(:last-child) {
+        margin-bottom: 6px !important;
+      }
+    }
+  }
+}

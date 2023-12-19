@@ -1,0 +1,44 @@
+<div class="popup-header">
+  <p class="title">SỬA THÔNG TIN NHÓM </p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="userGroupForm">
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tên nhóm</mat-label>
+      <input matInput formControlName="ten_nhom"/>
+      <mat-error *ngIf="userGroupForm.controls['ten_nhom'].touched && !userGroupForm.controls['ten_nhom'].valid">
+        <span *ngIf="userGroupForm.controls['ten_nhom'].errors?.['required']">Bạn chưa nhập tên nhóm</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Mô tả</mat-label>
+      <input matInput formControlName="mo_ta"/>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Chức năng</mat-label>
+      <mat-select formControlName="list_chuc_nang" matInput multiple>
+        <mat-option *ngFor="let role of allRole" [value]="role.id_chuc_nang">{{role.ten_chuc_nang}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="userGroupForm.controls['list_chuc_nang'].touched && !userGroupForm.controls['list_chuc_nang'].valid">
+        <span *ngIf="userGroupForm.controls['list_chuc_nang'].errors?.['required']">Bạn chưa chọn chức năng</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Người dùng</mat-label>
+      <mat-select formControlName="list_nguoi_dung" matInput multiple>
+        <mat-option *ngFor="let user of allUser" [value]="user.id_nguoi_dung">{{user.ten_day_du}} ({{user.ten_dang_nhap}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button class="form-row" color="accent" style="color: white"
+     [disabled]="userGroupForm.invalid || userGroupForm.pristine" (click)="onSaveBtn()">LƯU</button>
+
+  </form>
+</div>

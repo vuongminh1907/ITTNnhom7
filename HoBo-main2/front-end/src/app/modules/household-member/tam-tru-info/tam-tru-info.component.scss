@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  margin: 0 24px 24px 24px;
+  max-height: calc(80vh - 100px);
+  overflow-y: scroll;
+  .col-right, .col-left{
+    display: grid;
+    width: 300px;
+    padding: 14px;
+  }
+
+  .none-border {
+
+    .sub-table {
+      border: 0;
+
+
+      td {
+        padding-bottom: 0 !important;
+      }
+
+      .title {
+        font-weight: 500;
+        padding-right: 16px;
+        width: 80px;
+        vertical-align: baseline;
+      }
+    }
+    border: 0;
+
+    td {
+      padding-bottom: 12px !important;
+    }
+    .title {
+      font-weight: 500;
+      padding-right: 24px;
+      width: 150px;
+      vertical-align: baseline;
+    }
+
+    p {
+      &:last-child {
+        margin-bottom: 0px !important;
+      }
+      &:not(:last-child) {
+        margin-bottom: 6px !important;
+      }
+    }
+  }
+}

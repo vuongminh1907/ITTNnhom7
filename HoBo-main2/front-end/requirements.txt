@@ -1,0 +1,10 @@
+npm i @angular/animations@14.2.12
+npm i @angular/cdk@13.3.9
+npm i @angular/common@14.2.0
+npm i @angular/core@14.2.0
+npm i @angular/forms@14.2.0
+npm i @angular/material@13.3.9
+npm i @angular/platform-browser@14.2.0
+npm i @angular/router@14.2.0
+npm i ngx-toastr@15.2.2
+npm i --force @angular/material-moment-adapter

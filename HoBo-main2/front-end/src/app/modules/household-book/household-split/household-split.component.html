@@ -1,0 +1,117 @@
+<div class="container">
+  <p style="font-size: 20px; justify-content: center; display: flex; margin-bottom: 32px;">TÁCH HỘ KHẨU</p>
+  <form class="form-container" [formGroup]="hoKhauForm">
+    <div class="block">
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Mã hộ khẩu hiện tại</mat-label>
+          <input readonly matInput [value]="data['ma_ho_khau']" />
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Chủ hộ hiện tại</mat-label>
+          <input readonly matInput [value]="chuHo.ho_ten + ' - ' + (chuHo.ngay_sinh | date: 'dd/MM/yyyy')+ ' - ' + chuHo.dia_chi_hien_nay" />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Hàng 1 -->
+    <div class="block">
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Mã hộ khẩu mới</mat-label>
+          <input matInput formControlName="new_ma_ho_khau" />
+          <mat-error *ngIf="hoKhauForm.controls['new_ma_ho_khau'].touched && !hoKhauForm.controls['new_ma_ho_khau'].valid">
+            <span *ngIf="hoKhauForm.controls['new_ma_ho_khau'].errors?.['required']">Bạn chưa nhập mã hộ khẩu</span>
+            <span *ngIf="hoKhauForm.controls['new_ma_ho_khau'].errors?.['pattern']">Mã hộ khẩu chỉ bao gồm chữ cái và
+              số</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Ngày lập hộ khẩu mới</mat-label>
+          <input matInput [matDatepicker]="dp" formControlName="new_ngay_lap">
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Huỷ</button>
+              <button mat-raised-button color="accent" matDatepickerApply>Đồng ý</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error *ngIf="hoKhauForm.controls['new_ngay_lap'].touched && !hoKhauForm.controls['new_ngay_lap'].valid">
+            <span *ngIf="hoKhauForm.controls['new_ngay_lap'].errors?.['required']">Bạn chưa nhập ngày lập</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- Hàng 2  -->
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Mã khu vực mới</mat-label>
+          <input matInput formControlName="new_ma_khu_vuc" />
+          <mat-error *ngIf="hoKhauForm.controls['new_ma_khu_vuc'].touched && !hoKhauForm.controls['new_ma_khu_vuc'].valid">
+            <span *ngIf="hoKhauForm.controls['new_ma_khu_vuc'].errors?.['required']">Bạn chưa nhập mã khu vực</span>
+            <span *ngIf="hoKhauForm.controls['new_ma_khu_vuc'].errors?.['pattern']">Mã khu vực chỉ bao gồm chữ cái và
+              số</span>
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Địa chỉ mới</mat-label>
+          <input matInput formControlName="new_dia_chi" />
+          <mat-error *ngIf="hoKhauForm.controls['new_dia_chi'].touched && !hoKhauForm.controls['new_dia_chi'].valid">
+            <span *ngIf="hoKhauForm.controls['new_dia_chi'].errors?.['required']">Bạn chưa nhập địa chỉ</span>
+            <span *ngIf="hoKhauForm.controls['new_dia_chi'].errors?.['pattern']">Sai định dạng địa chỉ</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- Hàng 3 -->
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Ngày chuyển đi</mat-label>
+          <input matInput [matDatepicker]="dp1" formControlName="new_ngay_chuyen_di">
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Huỷ</button>
+              <button mat-raised-button color="accent" matDatepickerApply>Đồng ý</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Lý do chuyển</mat-label>
+          <input matInput formControlName="new_ly_do_chuyen" />
+        </mat-form-field>
+      </div>
+      <!-- Hàng 4 -->
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Tên chủ hộ mới</mat-label>
+          <input type="text" matInput formControlName="new_ten_chu_ho" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+            (optionSelected)="select($event.option.value)">
+            <mat-option *ngFor="let member of suggestList" [value]="member" class="text-ellipsis">
+              {{displayInfo(member)}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Diện tích nhà (m^2)</mat-label>
+          <input matInput formControlName="dien_tich" type="number" /> <!-- Thêm type="number" để chỉ cho phép nhập số -->
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="block">
+      <app-household-book-member [events]="eventSubject.asObservable()" [eventsRight]="eventSubjectRight.asObservable()"
+        [quanHeEvents]="quanHeSubject.asObservable()" (addEvent)="list_nhan_khau = $event"></app-household-book-member>
+    </div>
+
+    <div class="row" style="display: flex; justify-content: flex-end; margin-top: 24px;">
+      <button mat-flat-button style="margin-right: 24px" (click)="onCancel()">Quay lại</button>
+      <button class="signup-btn" mat-flat-button color="accent" style="color: white" [disabled]="hoKhauForm.invalid"
+        (click)="onSaveBtn()">TÁCH HỘ KHẨU</button>
+    </div>
+  </form>
+</div>

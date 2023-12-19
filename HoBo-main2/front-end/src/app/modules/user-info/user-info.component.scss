@@ -1,0 +1,41 @@
+@import '../../../assets/theme/variable.scss';
+
+.default-ava-thin {
+  content: url('../../../assets/icon/user-thin.svg');
+  width: calc(90%);
+  // margin: 14px;
+}
+
+::ng-deep .mat-input-element:disabled {
+  color: $main-dark !important;
+}
+::ng-deep .mat-select-disabled .mat-select-value{
+  color: $main-dark !important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
+  color: gray !important;
+
+  &.user-name {
+    margin-top: -8px !important;
+  }
+}
+::ng-deep .mat-input-element {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.user-name{
+    width: calc(100% - 113px);
+  }
+}
+
+.container {
+  display: flex;
+  margin: 0 24px 24px 24px;
+  .col-right, .col-left{
+    display: grid;
+    width: 300px;
+    padding: 14px;
+  }
+
+}

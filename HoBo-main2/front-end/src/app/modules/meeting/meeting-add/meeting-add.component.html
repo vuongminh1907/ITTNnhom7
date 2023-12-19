@@ -1,0 +1,91 @@
+<ng-container>
+<div class="popup-header">
+    <p class="title">THÊM CUỘC HỌP</p>
+    <button mat-icon-button (click)="closePopup()">
+      <mat-icon>clear</mat-icon>
+    </button>
+</div>
+  
+  <div class="container">
+    <form [formGroup]="meetingForm">
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label >Nội dung</mat-label>
+        <input matInput formControlName="noi_dung"/>
+        <mat-error *ngIf="meetingForm.controls['noi_dung'].touched && !meetingForm.controls['noi_dung'].valid">
+          <span *ngIf="meetingForm.controls['noi_dung'].errors?.['required']">Bạn chưa nhập nội dung cuộc họp</span>
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Thời gian</mat-label>
+        <input matInput [ngxMatDatetimePicker]="picker" formControlName="thoi_gian"
+           [min]="minDate" [max]="maxDate" [disabled]="disabled">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+           [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+           [touchUi]="touchUi" [color]="accent" [enableMeridian]="enableMeridian">
+        </ngx-mat-datetime-picker>
+        <mat-error *ngIf="meetingForm.controls['thoi_gian'].touched && !meetingForm.controls['thoi_gian'].valid">
+          <span *ngIf="meetingForm.controls['thoi_gian'].errors?.['required']">Bạn chưa nhập thời gian</span>
+        </mat-error>
+     </mat-form-field>
+      
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Địa điểm</mat-label>
+        <input matInput formControlName="dia_diem"/>
+        <mat-error *ngIf="meetingForm.controls['dia_diem'].touched && !meetingForm.controls['dia_diem'].valid">
+          <span *ngIf="meetingForm.controls['dia_diem'].errors?.['required']">Bạn chưa nhập địa điểm cuộc họp</span>
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <div class="block">
+          <div class="row">
+            <mat-checkbox #bienBan [checked]="checkBienBan" (change)="setCheckBienBan($event.checked)">Biên bản họp</mat-checkbox>
+          </div>
+          <div class="row" *ngIf="bienBan.checked">
+          <form [formGroup]="meetingPaperForm">
+            <mat-form-field class="form-row" appearance="outline" color="accent">
+              <mat-label >Nội dung chi tiết cuộc họp</mat-label>
+              <input matInput formControlName="ban_ve_viec"/>
+              <mat-error *ngIf="meetingPaperForm.controls['ban_ve_viec'].touched && !meetingPaperForm.controls['ban_ve_viec'].valid && bienBan.checked">
+                <span *ngIf="meetingPaperForm.controls['ban_ve_viec'].errors?.['required']">Bạn chưa nhập nội dung biên bản</span>
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="form-row" appearance="outline" color="accent">
+              <mat-label>Kết quả cuộc họp</mat-label>
+              <input matInput formControlName="thong_nhat"/>
+              <mat-error *ngIf="meetingPaperForm.controls['thong_nhat'].touched && !meetingPaperForm.controls['thong_nhat'].valid && bienBan.checked">
+                <span *ngIf="meetingPaperForm.controls['thong_nhat'].errors?.['required']">Bạn chưa nhập kết quả cuộc họp</span>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="form-row" appearance="outline" color="accent">
+              <mat-label>Thời gian lập</mat-label>
+              <input matInput [ngxMatDatetimePicker]="picker" formControlName="thoi_gian_lap"
+                 [min]="minDate" [max]="maxDate" [disabled]="disabled">
+              <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+                 [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+                 [touchUi]="touchUi" [color]="accent" [enableMeridian]="enableMeridian">
+              </ngx-mat-datetime-picker>
+              <mat-error *ngIf="meetingPaperForm.controls['thoi_gian_lap'].touched && !meetingPaperForm.controls['thoi_gian_lap'].valid && bienBan.checked">
+                <span *ngIf="meetingPaperForm.controls['thoi_gian_lap'].errors?.['required']">Bạn chưa nhập thời gian</span>
+              </mat-error>
+           </mat-form-field>
+      
+          </form>
+          </div>
+        </div>
+      </div>
+
+      <button mat-flat-button class="form-row" color="accent" style="color: white"
+       [disabled]="meetingForm.invalid || meetingForm.pristine" (click)="onAddButton()">LƯU</button>
+  
+    </form>
+  </div>
+
+  
+</ng-container>
+  

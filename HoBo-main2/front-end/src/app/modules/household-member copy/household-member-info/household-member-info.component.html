@@ -1,0 +1,15 @@
+<div class="popup-header">
+  <p class="title">THÔNG TIN NHÂN KHẨU</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <table class="none-border">
+    <tr *ngFor="let item of dict">
+      <td class="title">{{item.value}}</td>
+      <td [class.null-item]="!data[item.key]" style="display:flex; width: fit-content; max-width: 350px; margin: 0">{{!!data[item.key] ? data[item.key] : 'N/A'}}</td>
+    </tr>
+  </table>
+</div>

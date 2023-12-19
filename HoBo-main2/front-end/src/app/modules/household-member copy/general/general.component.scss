@@ -1,0 +1,63 @@
+@import '../../../../assets/theme/variable.scss';
+
+::ng-deep .action-row {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+::ng-deep table {
+  width: 100%;
+  // min-width: 800px;
+
+  ::ng-deep .mat-row {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: rgb(240, 240, 240);
+      cursor: default;
+    }
+  }
+
+  ::ng-deep .mat-row, .mat-header-row, .mat-footer-row {
+    height: 36px;
+  }
+
+  ::ng-deep .mat-cell, .mat-header-cell {
+    padding: 0 16px;
+  }
+
+  ::ng-deep .mat-column {
+    ::ng-deep &-checkbox {
+      width: 16px;
+    }
+    ::ng-deep &-ten_dang_nhap {
+      ::ng-deep &:not(.mat-header-cell){
+      color: $main-dark;
+      text-decoration: underline solid $main-dark;
+      cursor: pointer;
+      }
+    }
+    ::ng-deep &-email {
+      ::ng-deep &.not-null {
+        color: $info-dark;
+      }
+    }
+    ::ng-deep &-so_dien_thoai {
+      ::ng-deep &.not-null {
+        color: $info-dark;
+      }
+    }
+    ::ng-deep &-nhom {
+      width: 250px;
+    }
+    ::ng-deep &-chuc_vu {
+      ::ng-deep &.not-null {
+        color: $info-dark;
+      }
+    }
+    ::ng-deep &-action {
+      width: 36px;
+    }
+  }
+}

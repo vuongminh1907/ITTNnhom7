@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+
+$info-lighter: #e1f3f8;
+$info-light: #97d4ea;
+$info: #48aad5;
+$info-dark: #28a0cb;
+
+$main-bg: blue;
+$main-lighter: blue;
+$main-light:  blue;
+$main:  blue;
+$main-dark: blue;
+
+$error-lighter: #fde0d8;
+$error-light: #fdb8ae;
+$error: #fb5a47;
+$error-dark: #b51d09;
+$error-darker: #8b1303;
+
+$warning-lighter: #faf3d1;
+$warning-light: #fee685;
+$warning: #face00;
+$warning-darker: #a88f48;
+
+$success-lighter: #e3f5e1;
+$success-light: #b7f5bd;
+// $success-light: #92e29a;
+
+$success: #21c834;
+$success-dark: #00a91c;
+$success-darker: #008817;
+
+$disable-light: #e6e6e6;
+$disable: #c9c9c9;
+$disable-dark: #adadad;
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  // background-image: linear-gradient(pink, purple);
+}
+
+.header-text {
+  cursor: pointer;
+
+  &__1{
+    color: $main;
+    &:hover {
+      color: $main-dark;
+    }
+  }
+
+  &__2 {
+    color: $main;
+    &:hover {
+      color: $main-dark;
+      background-color: $main-bg;
+    }
+  }
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $disable-dark;
+  padding:16px 24px 4px 24px;
+
+  .title {
+    font-size: 20px;
+    line-height: 40px;
+    vertical-align: middle;
+  }
+}
+
+#toast-container > .toast-success {
+  background-color: $success-light;
+  color: $success-darker;
+}
+#toast-container > .toast-error {
+  background-color: $error-light;
+  color: $error-darker;
+}
+
+.hb-chip {
+  background-color: $disable-light;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-right: 8px;
+  padding: 1.5px 6px;
+  max-width: 70px;
+  display: inline-block;
+
+  &:hover {
+    background-color: $disable;
+  }
+
+  &.chip-more {
+    display: block;
+    margin-left: 8px;
+    width: fit-content;
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+}
+
+.tag-more {
+  font-style: italic;
+  color: gray;
+  cursor: pointer;
+}
+
+.mat-menu-item {
+  line-height: 36px;
+  height: 36px;
+}
+
+.null-item {
+  color: gray !important;
+  font-style: italic;
+}
+
+.no-data {
+  margin: 16px 0 0 48px;
+  font-style: italic;
+  color: gray;
+}
+
+.main-col-text {
+  color: #FF5664 !important;
+  -webkit-text-decoration: underline solid #FF5664;
+  text-decoration: underline solid #FF5664;
+  cursor: pointer;
+}

@@ -1,0 +1,82 @@
+<div class="popup-header">
+  <p class="title">THÊM TẠM VẮNG</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="form" style="display: grid; width: 100%;">
+    <div class="block">
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Mã giấy tạm vắng</mat-label>
+      <input matInput formControlName="ma_giay_tam_vang" />
+      <mat-error *ngIf="form.controls['ma_giay_tam_vang'].touched && !form.controls['ma_giay_tam_vang'].valid">
+        <span *ngIf="form.controls['ma_giay_tam_vang'].errors?.['required']">Bạn chưa nhập số giấy tạm trú</span>
+        <span *ngIf="form.controls['ma_giay_tam_vang'].errors?.['pattern']">Số giấy tạm trú chỉ bao gồm chữ cái và
+          số</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tên nhân khẩu</mat-label>
+      <input type="text" matInput formControlName="ten_nhan_khau" *ngIf="!!data">
+      <input type="text" matInput formControlName="ten_nhan_khau" [matAutocomplete]="auto" *ngIf="!data">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+        (optionSelected)="select($event.option.value)">
+        <mat-option *ngFor="let nc of suggestList" [value]="nc" class="text-ellipsis">
+          {{displayInfo(nc)}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-hint>Số CMT/CCCD: {{!!nhanKhau && !!nhanKhau['so_cmt'] ? nhanKhau['so_cmt'] : 'N/A'}}</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Từ ngày</mat-label>
+      <input matInput [matDatepicker]="dp" formControlName="tu_ngay">
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Huỷ</button>
+          <button mat-raised-button color="accent" matDatepickerApply>Đồng ý</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+      <mat-error *ngIf="form.controls['tu_ngay'].touched && !form.controls['tu_ngay'].valid">
+        <span *ngIf="form.controls['tu_ngay'].errors?.['required']">Bạn chưa nhập ngày</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Đến ngày</mat-label>
+      <input matInput [matDatepicker]="dp1" formControlName="den_ngay" />
+      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+      <mat-datepicker #dp1>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Huỷ</button>
+          <button mat-raised-button color="accent" matDatepickerApply>Đồng ý</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+      <mat-error *ngIf="form.controls['den_ngay'].touched && !form.controls['den_ngay'].valid">
+        <span *ngIf="form.controls['den_ngay'].errors?.['required']">Bạn chưa nhập ngày</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Lý do</mat-label>
+      <input matInput formControlName="ly_do" />
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Nơi tạm vắng</mat-label>
+      <input matInput formControlName="noi_tam_vang" />
+      <mat-error *ngIf="!form.controls['noi_tam_vang'].valid">
+        <span *ngIf="form.controls['noi_tam_vang'].errors?.['pattern']">Bạn nhập sai định dạng địa chỉ</span>
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <button mat-flat-button class="form-row" color="accent" style="color: white"
+      [disabled]="form.invalid || form.pristine || !nhanKhau" (click)="onSaveBtn()">LƯU</button>
+
+  </form>
+</div>
