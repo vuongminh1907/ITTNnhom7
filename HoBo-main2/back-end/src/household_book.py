@@ -293,7 +293,7 @@ def split_household(id):
                 except Exception as e:
                     print(str(e))
                     return return_response(code=500, msg="Có lỗi xảy ra. Vui lòng thử lại sau.")
-    
+
     #create new ho_khau
     id_nguoi_thuc_hien = current_user.id_nguoi_dung
     

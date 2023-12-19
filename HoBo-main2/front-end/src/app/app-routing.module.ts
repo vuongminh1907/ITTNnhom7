@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/household-member/household-member.module').then((m) => m.HouseholdMemberModule)
       },
       {
+        path: 'khoan-phi',
+        loadChildren: () => import('./modules/khoan-phi/khoan-phi.module').then((m) => m.KhoanPhiModule)
+      },
+      {
         path: 'household-book',
         loadChildren: () => import('./modules/household-book/household-book.module').then((m) => m.HouseholdBookModule)
       },

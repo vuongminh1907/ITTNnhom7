@@ -1,0 +1,49 @@
+<mat-accordion>
+  <mat-expansion-panel style="margin-top: 64px">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        DANH SÁCH KHOẢN PHÍ BẮT BUỘC
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-houshold-member-list style="width: 100%;"></app-houshold-member-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        DANH SÁCH KHOẢN PHÍ ĐÓNG GÓP
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-houshold-member-list style="width: 100%;"></app-houshold-member-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        TẠO DANH SÁCH KHOẢN PHÍ ĐÓNG GÓP
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-dong-gop-list style="width: 100%;"></app-dong-gop-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        CHI TIẾT ĐÓNG PHÍ
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- <app-houshold-member-list style="width: 100%;"></app-houshold-member-list> -->
+    <div style="width: 100%; display: flex; flex-direction: column; align-items: center; padding: 16px;">
+
+      <!-- Hiển thị hình ảnh -->
+      <img src="../../../../assets/img/image_6487327.jpg" alt="Quét mã QR" style="width: 400px; height: 400px; border-radius: 50%;">
+  
+      <!-- Hiển thị thông tin chuyển khoản -->
+      <div style="margin-top: 16px; text-align: center;">
+        <p>Các khoản phí nộp qua tài khoản: BIDV VUONG DINH MINH</p>
+        <p>Nội dung chuyển khoản : mã hộ khẩu - Tháng nộp</p>
+        <p>Ví dụ: BLS001-T12</p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

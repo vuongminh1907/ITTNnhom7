@@ -1,5 +1,3 @@
-import { TamVangAddComponent } from './../tam-vang-add/tam-vang-add.component';
-import { KhaiTuAddComponent } from './../khai-tu-add/khai-tu-add.component';
 import { Router } from '@angular/router';
 import { HouseholdMemberInfoComponent } from './../household-member-info/household-member-info.component';
 import { HouseholdMemberAddComponent } from './../household-member-add/household-member-add.component';
@@ -115,23 +113,7 @@ export class HousholdMemberListComponent implements OnInit {
       })
   }
 
-  onKhaiTu(member: any) {
-    const dialogRef = this.dialog.open(KhaiTuAddComponent, {
-      data: member,
-      width: '680px',
-      disableClose: true
-    });
-
-  }
-
-  onTamVang(member: any) {
-    const dialogRef = this.dialog.open(TamVangAddComponent, {
-      data: member,
-      width: '680px',
-      disableClose: true
-    });
-
-  }
+ 
 
   queryHouseholdMembers() {
     this.householdMemberService.searchHouseholdMembers(this.typeSearch, this.searchStr).subscribe(

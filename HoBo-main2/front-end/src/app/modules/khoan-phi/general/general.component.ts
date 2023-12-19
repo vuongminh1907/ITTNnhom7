@@ -12,4 +12,5 @@ export class GeneralComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
 }
