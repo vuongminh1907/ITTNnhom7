@@ -16,25 +16,25 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="ma_giay_tam_vang" >
+    <ng-container matColumnDef="ma_khoan_phi" >
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Mã khoản đóng góp</th>
       <td mat-cell *matCellDef="let element" class="text-ellipsis main-col-text" >
-        {{element.ma_giay_tam_vang}}</td>
+        {{element.ma_khoan_phi}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="ten_nhan_khau">
+    <ng-container matColumnDef="ten_phi_thu">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên Khoản đóng góp</th>
-      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ten_nhan_khau}} </td>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.ten_phi_thu}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="tu_ngay">
+    <ng-container matColumnDef="so_tien">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Số tiền đóng góp</th>
-      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.tu_ngay | date: 'dd/MM/yyyy'}} </td>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.so_tien}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="den_ngay">
+    <ng-container matColumnDef="han_nop">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Đến hạn ngày</th>
-      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.den_ngay | date: 'dd/MM/yyyy'}} </td>
+      <td mat-cell *matCellDef="let element" class="text-ellipsis"> {{element.han_nop | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">

@@ -203,3 +203,20 @@ class XoaNguoiThamDu(Schema):
 class ThemDanhGia(Schema):
     danh_sach_ma_ho_khau = fields.List(fields.String(),required=True)
     nam_danh_gia = fields.Integer(required = True)
+
+#######################################################################
+class ThemKhoanPhi(Schema):
+    ma_khoan_phi = fields.String(required=True)
+    ten_phi_thu = fields.String(required=True)
+    so_tien = fields.Integer(required= True)
+    mo_ta = fields.String(required= True)
+    han_nop = fields.Date(required = True)
+    
+class XoaKhoanPhi(Schema):
+    id_list = fields.List(fields.String(), required=True)
+
+class ThaydoiThongtinKhoanPhi(Schema):
+    ten_phi_thu = fields.String(required=True)
+    so_tien = fields.Integer(required = True)
+    mo_ta = fields.String(required= True)
+    han_nop = fields.Date(required = True)

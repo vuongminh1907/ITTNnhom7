@@ -6,8 +6,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { TamTruService } from 'src/app/services/tam-tru.service';
+import { DongGopService } from 'src/app/services/dong-gop.service';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
-
+// import { TamVangAddComponent } from '../tam-vang-add/tam-vang-add.component';
+// import { DongGopInfoComponent } from '../dong-gop-info/dong-gop-info.component';
 @Component({
   selector: 'app-dong-gop-list',
   templateUrl: './dong-gop-list.component.html',
@@ -19,12 +21,12 @@ export class DongGopListComponent implements OnInit {
   dataSource: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns = ['checkbox', 'ma_giay_tam_vang', 'ten_nhan_khau', 'tu_ngay', 'den_ngay', 'action'];
+  displayedColumns = ['checkbox', 'ma_khoan_phi', 'ten_phi_thu', 'so_tien', 'han_nop', 'action'];
   checkedList: any[] = [];
 
   constructor(public dialog: MatDialog,
     private toastrService: ToastrService,
-    private tamVangService: TamVangService) {
+    private dongGopService: DongGopService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class DongGopListComponent implements OnInit {
   }
 
   search() {
-    this.tamVangService.getAllTamVangs().subscribe(
+    this.dongGopService.getAllDongGops().subscribe(
       (res: any) => {
         this.data = res.data;
         console.log('aaaa', res.data)
@@ -52,7 +54,7 @@ export class DongGopListComponent implements OnInit {
   }
 
   // onAdd() {
-  //   const dialogRef = this.dialog.open(TamVangAddComponent, {
+  //   const dialogRef = this.dialog.open(DongGopAddComponent, {
   //     width: '680px',
   //     // maxHeight: '80vh',
   //     disableClose: true
@@ -69,7 +71,7 @@ export class DongGopListComponent implements OnInit {
   onDelete(idList: any) {
     const dialogRef = this.dialog.open(ConfirmPopupComponent, {
       data: {
-        title: `Bạn có muốn xoá ${idList.length} tạm vắng này không?`,
+        title: `Bạn có muốn xoá ${idList.length} đóng góp này không?`,
         text: 'Dữ liệu sẽ được xoá và không khôi phục được',
       },
       width: '500px',
@@ -79,7 +81,7 @@ export class DongGopListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         let params = {id_list: idList}
-        this.tamVangService.deleteTamVangs(params).subscribe(
+        this.dongGopService.deleteDongGops(params).subscribe(
           (res) => {
             this.toastrService.success(res.message);
             this.search();
@@ -103,9 +105,9 @@ export class DongGopListComponent implements OnInit {
   }
 
   // onOpen(id: any) {
-  //   this.tamVangService.getTamVangById(id).subscribe(
+  //   this.dongGopService.getDongGopById(id).subscribe(
   //     (res: any) => {
-  //       const dialogRef = this.dialog.open(TamVangInfoComponent, {
+  //       const dialogRef = this.dialog.open(DongGopInfoComponent, {
   //         data: res.data,
   //         width: '680px',
   //         // height: '80vh',
