@@ -1,4 +1,4 @@
-import { DongGopService } from './../../../services/dong-gop.service';
+import { DongGopService } from '../../../services/dong-gop.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -6,24 +6,24 @@ import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dial
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
-
+import { BatBuocService } from '../../../services/bat-buoc.service';
 @Component({
-  selector: 'app-dong-gop-add',
-  templateUrl: './dong-gop-add.component.html',
-  styleUrls: ['./dong-gop-add.component.scss']
+  selector: 'app-bat-buoc-add',
+  templateUrl: './bat-buoc-add.component.html',
+  styleUrls: ['./bat-buoc-add.component.scss']
 })
-export class DongGopAddComponent implements OnInit {
+export class BatBuocAddComponent implements OnInit {
   readonly dinhDangSdt = /^[0-9]{9,11}$/;
   readonly dinhDangDiaChi = /^[0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\ ,\/-]+$/;
   readonly dinhDangSoHoChieu = /^[0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/;
 
   form!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<DongGopAddComponent>,
+  constructor(public dialogRef: MatDialogRef<BatBuocAddComponent>,
     public dialog: MatDialog,
     private toastrService: ToastrService,
     private dongGopService: DongGopService,
-    //private householdMemberService: HouseholdMemberService,
+    private batbuocService : BatBuocService,
     private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -32,24 +32,19 @@ export class DongGopAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //if (!!this.data) this.nhanKhau = this.data;
     this.initForm();
-
-
-    // this.form.controls['ten_nhan_khau'].valueChanges.subscribe(
-    //   (value) => {
-    //     this.getSuggestList(value);
-    //   }
-    // );
   }
 
   initForm() {
     this.form = new FormGroup({
-      ma_dong_gop: new FormControl(''),
-      ten_dong_gop: new FormControl(''),
-      han_nop: new FormControl({}, Validators.required),
+      month: new FormControl(''),
+      year: new FormControl(''),
+      tien_dich_vu: new FormControl(''),
+      tien_moi_truong: new FormControl(''),
+      tien_quan_ly: new FormControl(''),
       mo_ta: new FormControl(''),
-      so_tien: new FormControl('', Validators.required)
+      tien_gui_xe: new FormControl(''),
+      tien_bao_ve: new FormControl('')
     }
     )
 
@@ -80,16 +75,9 @@ export class DongGopAddComponent implements OnInit {
 
 
   save() {
-    const formValue = this.form.getRawValue();
-    let params = {
-      ma_dong_gop: formValue['ma_dong_gop'],
-      ten_dong_gop: formValue['ten_dong_gop'],
-      han_nop: moment(formValue['han_nop']).format('yyyy-MM-DD'),
-      mo_ta: formValue['mo_ta'],
-      so_tien: formValue['so_tien']
-    }
+    const params = this.form.getRawValue();
 
-    this.dongGopService.createDongGop(params).subscribe(
+    this.batbuocService.createBatBuoc(params).subscribe(
       (res) => {
         this.toastrService.success(res.message)
       }, (error) => {

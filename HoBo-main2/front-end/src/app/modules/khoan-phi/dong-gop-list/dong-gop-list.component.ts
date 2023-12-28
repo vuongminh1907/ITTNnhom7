@@ -1,15 +1,14 @@
 import { TamVangService } from '../../../services/tam-vang.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog'; 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { TamTruService } from 'src/app/services/tam-tru.service';
 import { DongGopService } from 'src/app/services/dong-gop.service';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
-// import { TamVangAddComponent } from '../tam-vang-add/tam-vang-add.component';
-// import { DongGopInfoComponent } from '../dong-gop-info/dong-gop-info.component';
+import { DongGopAddComponent } from '../dong-gop-add/dong-gop-add.component';
+import { DongGopInfoComponent } from '../dong-gop-info/dong-gop-info.component';
 @Component({
   selector: 'app-dong-gop-list',
   templateUrl: './dong-gop-list.component.html',
@@ -21,16 +20,18 @@ export class DongGopListComponent implements OnInit {
   dataSource: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  displayedColumns = ['checkbox', 'ma_khoan_phi', 'ten_phi_thu', 'so_tien', 'han_nop', 'action'];
+  displayedColumns = ['checkbox', 'ma_dong_gop', 'ten_dong_gop', 'so_tien', 'han_nop', 'action'];
   checkedList: any[] = [];
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     private toastrService: ToastrService,
     private dongGopService: DongGopService) {
   }
 
   ngOnInit(): void {
     this.search();
+    console.log(this.data);
   }
 
   ngAfterViewInit() {
@@ -53,16 +54,16 @@ export class DongGopListComponent implements OnInit {
     );
   }
 
-  // onAdd() {
-  //   const dialogRef = this.dialog.open(DongGopAddComponent, {
-  //     width: '680px',
-  //     // maxHeight: '80vh',
-  //     disableClose: true
-  //   });
-  //   dialogRef.afterClosed().subscribe(() => {
-  //     this.search();
-  //   })
-  // }
+  onAdd() {
+    const dialogRef = this.dialog.open(DongGopAddComponent, {
+      width: '680px',
+      // maxHeight: '80vh',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.search();
+    })
+  }
 
   onEdit(id: any) {
     // this.router.navigate(['home/household-member/edit/', id]);
@@ -114,4 +115,16 @@ export class DongGopListComponent implements OnInit {
   //       })
   //     })
   // }
+  openDetailDialog(id: any): void {
+    this.dongGopService.getDongGopById(id).subscribe(
+      (res: any) => {
+        console.log(res); // Ghi log phản hồi để kiểm tra xem dữ liệu có được nhận không
+        const dialogRef = this.dialog.open(DongGopInfoComponent, {
+          data: res.data,
+          width: '680px',
+          // height: '80vh',
+        });
+      }
+    );
+  }
 }

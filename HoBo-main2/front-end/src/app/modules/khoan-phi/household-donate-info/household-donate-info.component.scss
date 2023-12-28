@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  display: grid;
   margin: 0 24px 24px 24px;
   max-height: calc(80vh - 100px);
   overflow-y: scroll;
@@ -10,6 +10,22 @@
   }
 
   .none-border {
+
+    .sub-table {
+      border: 0;
+
+
+      td {
+        padding-bottom: 0 !important;
+      }
+
+      .title {
+        font-weight: 500;
+        padding-right: 24px;
+        width: 120px;
+        vertical-align: baseline;
+      }
+    }
     border: 0;
 
     td {

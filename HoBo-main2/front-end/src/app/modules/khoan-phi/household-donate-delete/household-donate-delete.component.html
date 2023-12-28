@@ -1,0 +1,23 @@
+<div class="popup-header">
+  <p class="title">XÓA CÁC KHOẢN ĐÓNG GÓP</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="form" style="display: grid; width: 100%;">
+    <div class="block">
+      <div style="margin-bottom: 10px; color: rgb(48, 40, 40); font-style: italic;">Những khoản đã chốt hoặc đăng ký sai</div>
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Chọn khoản đóng góp muốn xóa</mat-label>
+        <mat-select formControlName="ma_list" matInput multiple>
+          <mat-option *ngFor="let donggop of daDongGop" [value]="donggop.ma_dong_gop">{{donggop.ten_dong_gop}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button class="form-row" color="accent" style="color: white"
+        [disabled]="form.invalid || form.pristine" (click)="onSaveBtn()">LƯU</button>
+    </div>
+  </form>
+</div>

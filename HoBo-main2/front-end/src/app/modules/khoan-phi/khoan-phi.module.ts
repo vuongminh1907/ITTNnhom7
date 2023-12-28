@@ -15,34 +15,41 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { HousholdMemberListComponent } from './houshold-member-list/houshold-member-list.component';
-import { HouseholdMemberInfoComponent } from './household-member-info/household-member-info.component';
-import { HouseholdMemberEditComponent } from './household-member-edit/household-member-edit.component';
-import { HouseholdMemberAddComponent } from './household-member-add/household-member-add.component';
 import { DongGopListComponent } from './dong-gop-list/dong-gop-list.component';
 import { DongGopAddComponent } from './dong-gop-add/dong-gop-add.component';
+import { DongGopInfoComponent } from './dong-gop-info/dong-gop-info.component';
+
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { GeneralComponent } from './general/general.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule, MAT_AUTOCOMPLETE_SCROLL_STRATEGY } from '@angular/material/autocomplete';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
+import { HouseholdDonateListComponent } from './household-donate-list/household-donate-list.component';
+import { HouseholdDonateInfoComponent } from './household-donate-info/household-donate-info.component';
+import { HouseholdDonateAddComponent } from './household-donate-add/household-donate-add.component';
+import { HouseholdDonateDeleteComponent } from './household-donate-delete/household-donate-delete.component';
+import { BatBuocListComponent } from './bat-buoc-list/bat-buoc-list.component';
+//import { HouseholdInfoComponent } from './household-info/household-info.component';
+//import { HouseholdAddComponent } from './household-add/household-add.component';
+//import { HouseholdBookMemberComponent } from './household-book-member/household-book-member.component';
+//import { HouseholdEditComponent } from './household-edit/household-edit.component';
+import { BatBuocAddComponent } from './bat-buoc-add/bat-buoc-add.component';
 const routes: Routes = [
   {
     path: '',
     component: GeneralComponent,
   },
-  {
-    path: 'add',
-    component: HouseholdMemberAddComponent,
-    canDeactivate: [HouseholdMemberGuard]
-  },
-  {
-    path: 'edit/:id',
-    component: HouseholdMemberEditComponent,
-    canDeactivate: [HouseholdMemberGuard]
-  }
+  // {
+  //   path: 'add',
+  //   component: HouseholdMemberAddComponent,
+  //   canDeactivate: [HouseholdMemberGuard]
+  // },
+  // {
+  //   path: 'edit/:id',
+  //   component: HouseholdMemberEditComponent,
+  //   canDeactivate: [HouseholdMemberGuard]
+  // }
 ];
 
 @NgModule({
@@ -71,12 +78,19 @@ const routes: Routes = [
     ScrollingModule
   ],
   declarations: [
-    HousholdMemberListComponent,
-    HouseholdMemberInfoComponent,
-    HouseholdMemberEditComponent,
-    HouseholdMemberAddComponent,
+    // HousholdMemberListComponent,
+    // HouseholdMemberInfoComponent,
+    // HouseholdMemberEditComponent,
+    // HouseholdMemberAddComponent,
     DongGopListComponent,
     DongGopAddComponent,
+    DongGopInfoComponent,
+    HouseholdDonateListComponent,
+    HouseholdDonateInfoComponent,
+    HouseholdDonateAddComponent,
+    HouseholdDonateDeleteComponent,
+    BatBuocListComponent,
+    BatBuocAddComponent,
     GeneralComponent,
   ],
   exports: [RouterModule],

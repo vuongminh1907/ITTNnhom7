@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  padding: 0 24px 24px 24px;
+
+  .block {
+    // max-height: calc(80vh - 160px);
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+    display: grid;
+  }
+
+  .form-row {
+    margin-bottom: 6px;
+  }
+}

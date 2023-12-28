@@ -5,8 +5,9 @@
 
   .action-row {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 12px;
+  justify-content: space-around;
+  align-items: center; /* Thêm dòng này để căn giữa theo chiều dọc */
+  margin-bottom: 12px;
   }
 
   table {
@@ -82,4 +83,10 @@
 
 .custom-btn {
   height: 45.06px;
+  margin-left: 10px; /* Khoảng cách giữa nút Tìm kiếm và Thêm Phí Bắt Buộc */
 }
+.custom-btnn {
+  height: 45.06px;
+  margin-left: 695px; /* Khoảng cách giữa nút Tìm kiếm và Thêm Phí Bắt Buộc */
+}
+

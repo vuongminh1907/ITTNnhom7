@@ -1,0 +1,56 @@
+<div class="popup-header">
+  <p class="title">THÊM KHOẢN ĐÓNG GÓP</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="form" style="display: grid; width: 100%;">
+    <div class="block">
+        <div class="row">
+          <mat-form-field class="form-row" appearance="outline" color="accent">
+            <mat-label>Tháng</mat-label>
+            <input matInput formControlName="month" />
+          </mat-form-field>
+  
+          <div style="margin-right: 200px;"></div>
+
+          <mat-form-field class="form-row" appearance="outline" color="accent">
+            <mat-label>Năm</mat-label>
+            <input matInput formControlName="year" />
+          </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tiền dịch vụ</mat-label>
+      <input matInput formControlName="tien_dich_vu" />
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tiền Môi Trường</mat-label>
+      <input matInput formControlName="tien_moi_truong" />
+    </mat-form-field>
+
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tiền quản lý</mat-label>
+      <input matInput formControlName="tien_quan_ly" />
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Mô Tả</mat-label>
+      <input matInput formControlName="mo_ta" />
+    </mat-form-field>
+
+    <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-label>Tiền Bảo Vệ</mat-label>
+      <input matInput formControlName="tien_bao_ve" />
+    </mat-form-field>
+    </div>
+
+    <button mat-flat-button class="form-row" color="accent" style="color: white"
+      [disabled]="form.invalid || form.pristine" (click)="onSaveBtn()">LƯU</button>
+
+  </form>
+</div>

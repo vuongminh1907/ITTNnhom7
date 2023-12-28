@@ -1,0 +1,42 @@
+<div class="popup-header">
+  <p class="title">THÊM KHOẢN ĐÓNG GÓP</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="form" style="display: grid; width: 100%;">
+    <div class="block">
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Chọn khoản đóng góp</mat-label>
+        <mat-select formControlName="ma_dong_gop" matInput>
+          <mat-option *ngFor="let donggop of danhsachDongGop" [value]="donggop.ma_dong_gop">{{donggop.ten_dong_gop}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Số tiền</mat-label>
+        <input matInput formControlName="so_tien" />
+      </mat-form-field>
+
+      <!-- <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Ngày ủng hộ</mat-label>
+        <input matInput [matDatepicker]="dp" formControlName="ngay_ung_ho">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Huỷ</button>
+            <button mat-raised-button color="accent" matDatepickerApply>Đồng ý</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-error *ngIf="form.controls['ngay_ung_ho'].touched && !form.controls['ngay_ung_ho'].valid">
+          <span *ngIf="form.controls['ngay_ung_ho'].errors?.['required']">Bạn chưa nhập ngày</span>
+        </mat-error>
+      </mat-form-field> -->
+
+      <button mat-flat-button class="form-row" color="accent" style="color: white"
+        [disabled]="form.invalid || form.pristine" (click)="onSaveBtn()">LƯU</button>
+    </div>
+  </form>
+</div>

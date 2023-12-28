@@ -329,33 +329,51 @@ class GiaDinhVanHoa(db.Model):
 
 
 ######################################################################################
-class KhoanPhiDongGop(db.Model):
-    __tablename__ = 'khoan_phi'
-    __tablen_args__ = dict(schema = "quan_ly_thu_phi")
-    id = db.Column("idKhoanThu", db.String(100), primary_key = True)
-    ma_khoan_phi = db.Column("maKhoanPhi",db.String(100),unique= True)
-    ten_phi_thu = db.Column("tenPhiThu",db.String(100))
+class DongGop(db.Model):
+    __tablename__ = 'dong_gop'
+    __table_args__ = dict(schema = "quan_ly_thu_phi")
+    id = db.Column("idDongGop", db.String(100), primary_key = True)
+    ma_dong_gop = db.Column("maDongGop",db.String(100),unique= True)
+    ten_dong_gop = db.Column("tenDongGop",db.String(100))
     so_tien = db.Column("soTien",db.Integer())
     mo_ta = db.Column("moTa",db.String(100))
     han_nop = db.Column("hanNop",db.Date())
-    #id_nguoi_tao = db.Column("idNguoiTao",db.String(100), db.ForeignKey('quan_ly_nguoi_dung.nguoi_dung.idNguoiDung'))
-    #id_nguoi_xoa = db.Column("idNguoiXoa",db. STring(100), db.ForeignKey('quan_ly_nguoi_dung.nguoi_dung.idNguoiDung'))
     #------------------------------------
-    #cac_ho_khau = db.relationship("DanhSachHoKhauDongPhi",secondary = 'danh_sach_ho_khau_dong_phi',backref = 'khoan_phi')
+    #cac_ho_khau = db.relationship("DanhSachDongGop",backref = 'dong_gop')
     #ho_khau_nop_phi = db.relationship("DanhSachHoKhauDaNop",secondary = 'danh_sach_ho_khau_da_nop', backref = 'khoan_phi')
 
-    def __init__(self,id,ten_phi_thu,so_tien,mo_ta,han_nop):
+    def __init__(self,id,ma_dong_gop,ten_dong_gop,so_tien,mo_ta,han_nop):
         self.id = id
-        self.ten_phi_thu = ten_phi_thu
+        self.ma_dong_gop = ma_dong_gop
+        self.ten_dong_gop = ten_dong_gop
         self.so_tien = so_tien
         self.mo_ta = mo_ta
         self.han_nop = han_nop
 
     @hybrid_property
     def remain_time(self):
-        remain = (self.han_nop - datetime.today()).days
+        today_datetime = datetime.today().date()  # Chuyển đổi thành đối tượng datetime.date
+        remain = (self.han_nop - today_datetime).days
         return remain
     @hybrid_property
     def han_month(self):
         thang = self.han_nop.month
         return thang
+#####################################################################
+class DanhSachDongGop(db.Model):
+    __tablename__= 'danh_sach_dong_gop'
+    __table_args__= dict(schema='quan_ly_thu_phi')
+    id_dong_gop = db.Column("idDongGop",db.String(100),primary_key= True)
+    ma_dong_gop = db.Column("maDongGop",db.String(100),db.ForeignKey('quan_ly_thu_phi.dong_gop.maDongGop'))
+    ma_ho_khau = db.Column("maHoKhau",db.String(100),db.ForeignKey('quan_ly_nhan_khau.ho_khau.maHoKhau'))
+    ngay_ung_ho = db.Column("ngayUngHo",db.Date())
+    so_tien = db.Column("tienUngHo",db.Integer())
+    ho_khau = db.relationship('HoKhau', backref='danh_sach_dong_gop')
+    khoan_dong_gop = db.relationship('DongGop', backref='danh_sach_dong_gop')
+    
+    def __init__(self,id_dong_gop,ma_dong_gop,ma_ho_khau,ngay_ung_ho,so_tien):
+        self.id_dong_gop = id_dong_gop
+        self.ma_dong_gop = ma_dong_gop
+        self.ma_ho_khau = ma_ho_khau
+        self.ngay_ung_ho = ngay_ung_ho
+        self.so_tien = so_tien

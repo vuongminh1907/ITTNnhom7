@@ -1,48 +1,50 @@
 import { Router } from '@angular/router';
-import { HouseholdMemberInfoComponent } from './../household-member-info/household-member-info.component';
-import { HouseholdMemberAddComponent } from './../household-member-add/household-member-add.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { HouseholdMemberService } from 'src/app/services/household-member.service';
+import { BatBuocService } from 'src/app/services/bat-buoc.service';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
-import { MatSelect } from '@angular/material/select';
+import { MatSelect } from '@angular/material/select'; 
+import { BatBuocAddComponent } from '../bat-buoc-add/bat-buoc-add.component';
 
 @Component({
-  selector: 'app-houshold-member-list',
-  templateUrl: './houshold-member-list.component.html',
-  styleUrls: ['./houshold-member-list.component.scss']
+  selector: 'app-bat-buoc-list',
+  templateUrl: './bat-buoc-list.component.html',
+  styleUrls: ['./bat-buoc-list.component.scss']
 })
-export class HousholdMemberListComponent implements OnInit {
+export class BatBuocListComponent implements OnInit {
   data = [];
   dataSource: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  typeSearch = 'none';
   searchStr = '';
-  displayedColumns = ['ho_ten', 'so_cmt', 'ngay_sinh', 'gioi_tinh', 'dia_chi_hien_nay', 'action'];
+  searchMonth: any;
+  searchYear: any;
+  search : any;
+  //search.month = this.searchmonth;
+  displayedColumns = ['ma_ho_khau', 'ten_chu_ho', 'so_tien_thieu', 'so_tien_da_nop', 'action'];
   // checkedList: any[] = [];
 
   constructor(public dialog: MatDialog,
     private toastrService: ToastrService,
-    private householdMemberService: HouseholdMemberService,
+    private batbuocService: BatBuocService,
     private router: Router) {
   }
 
   ngOnInit(): void {
-    this.searchHouseholdMembers();
+   // this.searchHouseholdMembers();
   }
 
   ngAfterViewInit() {
 
   }
 
-  searchHouseholdMembers() {
-    this.householdMemberService.getAllHouseholdMember().subscribe(
+  searchHouseholdMembers(searchMonth: any,searchYear: any) {
+    this.batbuocService.searchBatBuoc(searchMonth).subscribe(
       (res) => {
         this.data = res.data;
         this.dataSource = new MatTableDataSource<any>(this.data);
@@ -58,20 +60,21 @@ export class HousholdMemberListComponent implements OnInit {
 
 
 
+  //Them phi bat buoc
   onAdd() {
-    // const dialogRef = this.dialog.open(HouseholdMemberAddComponent, {
-    //   width: '680px',
-    //   disableClose: true
-    // });
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.searchHouseholdMembers();
-    // })
-    this.router.navigate(['home/household-member/add']);
+    const dialogRef = this.dialog.open(BatBuocAddComponent, {
+      width: '680px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    })
+    
   }
 
-  onEdit(id: any) {
-    this.router.navigate(['home/household-member/edit/', id]);
-  }
+  // onEdit(id: any) {
+  //   this.router.navigate(['home/household-member/edit/', id]);
+  // }
 
   // onDelete(idList: any) {
   //   const dialogRef = this.dialog.open(ConfirmPopupComponent, {
@@ -102,21 +105,20 @@ export class HousholdMemberListComponent implements OnInit {
 
   // }
 
-  onOpen(id: any) {
-    this.householdMemberService.getHouseholdMember(id).subscribe(
-      (res) => {
-        const dialogRef = this.dialog.open(HouseholdMemberInfoComponent, {
-          data: res.data,
-          width: '680px',
-          // height: '80vh',
-        })
-      })
-  }
+  // onOpen(id: any) {
+  //   this.householdMemberService.getHouseholdMember(id).subscribe(
+  //     (res) => {
+  //       const dialogRef = this.dialog.open(HouseholdMemberInfoComponent, {
+  //         data: res.data,
+  //         width: '680px',
+  //         // height: '80vh',
+  //       })
+  //     })
+  // }
 
- 
 
   queryHouseholdMembers() {
-    this.householdMemberService.searchHouseholdMembers(this.typeSearch, this.searchStr).subscribe(
+    this.batbuocService.searchBatBuoc(this.searchStr).subscribe(
       (res) => {
         this.data = res.data;
         this.dataSource = new MatTableDataSource<any>(this.data);
@@ -134,9 +136,9 @@ export class HousholdMemberListComponent implements OnInit {
     return;
   }
 
-  cancelSearch() {
-    this.typeSearch = 'none';
-    this.searchStr = '';
-    this.searchHouseholdMembers();
-  }
+  // cancelSearch() {
+  //   this.typeSearch = 'none';
+  //   this.searchStr = '';
+  //   this.searchHouseholdMembers();
+  // }
 }
