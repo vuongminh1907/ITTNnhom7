@@ -71,6 +71,14 @@ export class HouseholdEditComponent implements OnInit {
       dien_tich: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      xe_may: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      o_to: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
       ]))
     });
   }
@@ -80,6 +88,8 @@ export class HouseholdEditComponent implements OnInit {
     this.householdService.getHouseholdById(this.id).subscribe(
       (res: any) => {
         this.data = res.data;
+        this.hoKhauForm.patchValue({xe_may : res.data['xe_may']});
+        this.hoKhauForm.patchValue({o_to : res.data['o_to']});
         this.hoKhauForm.patchValue({dien_tich : res.data['dien_tich']});
         this.hoKhauForm.patchValue({ma_ho_khau : res.data['ma_ho_khau']});
         // this.hoKhauForm.patchValue({ten_chu_ho: res.data['ten_chu_ho']});
@@ -150,7 +160,9 @@ export class HouseholdEditComponent implements OnInit {
       ngay_chuyen_di: !!formValue['ngay_chuyen_di'] ? moment(new Date()).format('yyyy-MM-DD') : null,
       ly_do_chuyen: formValue['ly_do_chuyen'],
       dia_chi: formValue['dia_chi'],
-      dien_tich: formValue['dien_tich'], // Thêm trường này
+      dien_tich: formValue['dien_tich'],
+      o_to: formValue['o_to'],
+      xe_may: formValue['xe_may'], // Thêm trường này
       list_nhan_khau: this.list_nhan_khau
     };
 

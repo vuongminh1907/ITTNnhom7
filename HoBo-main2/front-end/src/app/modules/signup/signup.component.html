@@ -46,7 +46,7 @@
       </mat-form-field>
       <mat-form-field class="form-row" appearance="outline" color="accent">
         <mat-label>Họ và tên</mat-label>
-        <input matInput placeholder="Ex: Trần Vân Ngọc" formControlName="hoTen" />
+        <input matInput placeholder="Ex: Vương Đình Minh" formControlName="hoTen" />
         <!-- <div class="user-icon" matSuffix></div> -->
         <mat-error *ngIf="signupForm.controls['hoTen'].touched && !signupForm.controls['hoTen'].valid">
           <span *ngIf="signupForm.controls['hoTen'].errors?.['required']">Bạn chưa nhập họ và tên</span>
@@ -67,7 +67,7 @@
 
       <mat-form-field class="form-row" appearance="outline" color="accent">
         <mat-label>Số điện thoại</mat-label>
-        <input matInput placeholder="Ex: hobo123" formControlName="sdt" />
+        <input matInput placeholder="Ex: 0813197203" formControlName="sdt" />
         <!-- <div class="user-icon" matSuffix></div> -->
         <mat-error *ngIf="!signupForm.controls['sdt'].valid">
           <span *ngIf="signupForm.controls['sdt'].errors?.['pattern']">Bạn nhập sai định dạng số điện thoại</span>

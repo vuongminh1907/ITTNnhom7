@@ -100,7 +100,6 @@ def update_household_member(id):
         res = schema.ThongTinNhanKhau().load(args)
     except Exception as e:
         return return_response(code=HTTPStatus.UNPROCESSABLE_ENTITY, msg=str(e))
-
     ho_ten = args.get('ho_ten')
     biet_danh = args.get('biet_danh')
     ngay_sinh = args.get('ngay_sinh')
@@ -135,8 +134,7 @@ def update_household_member(id):
     noi_cap = args.get('noi_cap')
 
     #check existing record
-    household_member = NhanKhau.query.filter(or_(NhanKhau.ghi_chu == None,
-                                    and_(NhanKhau.ghi_chu != None, NhanKhau.ghi_chu != 'Đã qua đời'))).first()
+    household_member = NhanKhau.query.filter_by(ID= id).first()
     if not household_member:
         return return_response(code=HTTPStatus.BAD_REQUEST, msg="Nhân khẩu không tồn tại.")
 

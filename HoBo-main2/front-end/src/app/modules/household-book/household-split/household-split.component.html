@@ -97,8 +97,20 @@
         </mat-form-field>
         
         <mat-form-field class="form-row" appearance="outline" color="accent">
-          <mat-label>Diện tích nhà (m^2)</mat-label>
-          <input matInput formControlName="dien_tich" type="number" /> <!-- Thêm type="number" để chỉ cho phép nhập số -->
+          <mat-label>Diện tích nhà (m<sup>2</sup>)</mat-label>
+          <input matInput formControlName="new_dien_tich" type="number" /> <!-- Thêm type="number" để chỉ cho phép nhập số -->
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Số ô tô</mat-label>
+          <input matInput formControlName="new_o_to" type="number" /> <!-- Thêm type="number" để chỉ cho phép nhập số -->
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-label>Số xe máy</mat-label>
+          <input matInput formControlName="new_xe_may" type="number" /> <!-- Thêm type="number" để chỉ cho phép nhập số -->
         </mat-form-field>
       </div>
     </div>

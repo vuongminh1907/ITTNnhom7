@@ -76,7 +76,7 @@ export class GeneralComponent implements OnInit {
   checkValidYear (value: any) {
     let year = parseInt(value);
     let current_year = new Date().getFullYear();
-    if (year <= current_year && year >= 2018) {
+    if (year <= current_year && year >= 2023) {
       return true;
     } else return false;
   }

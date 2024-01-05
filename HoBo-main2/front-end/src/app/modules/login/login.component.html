@@ -35,7 +35,7 @@
 
     <button class="form-row" mat-flat-button color="accent" [disabled]="loginForm.invalid" [style.color]="'white'" (click)="onSubmit()">ĐĂNG NHẬP</button>
     <br>
-    <a class="form-row link">Chưa có tài khoản? Liên hệ quản trị viên để được cấp tài khoản</a>
+    <a class="form-row link" (click)="onNoAccountClick()" >Chưa có tài khoản? Liên hệ quản trị viên để được cấp tài khoản</a>
   </form>
 
   <div class="footer">

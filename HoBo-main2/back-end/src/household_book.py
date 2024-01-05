@@ -50,6 +50,8 @@ def create_household():
     ly_do_chuyen = args.get('ly_do_chuyen')
     list_nhan_khau = args.get('list_nhan_khau')
     dien_tich = args.get('dien_tich')
+    xe_may = args.get('xe_may')
+    o_to = args.get('o_to')
 
     #check existing ma_ho_khau
     household = HoKhau.query.filter_by(ma_ho_khau=ma_ho_khau).first()
@@ -78,7 +80,7 @@ def create_household():
     id_nguoi_thuc_hien = current_user.id_nguoi_dung
     id = str(uuid.uuid4().hex)
     new_household = HoKhau(id=id, ma_ho_khau=ma_ho_khau, id_chu_ho=id_chu_ho, ma_khu_vuc=ma_khu_vuc, dia_chi=dia_chi,
-                        ngay_lap=ngay_lap, ngay_chuyen_di=ngay_chuyen_di, ly_do_chuyen=ly_do_chuyen, dien_tich= dien_tich, id_nguoi_thuc_hien=id_nguoi_thuc_hien)
+                        ngay_lap=ngay_lap, ngay_chuyen_di=ngay_chuyen_di, ly_do_chuyen=ly_do_chuyen, dien_tich= dien_tich, id_nguoi_thuc_hien=id_nguoi_thuc_hien, xe_may=xe_may, o_to=o_to)
     
     try:
         db.session.add(new_household)
@@ -124,6 +126,8 @@ def update_household(id):
     ly_do_chuyen = args.get('ly_do_chuyen')
     list_nhan_khau = args.get('list_nhan_khau')
     dien_tich= args.get('dien_tich')
+    o_to= args.get('o_to')
+    xe_may= args.get('xe_may')
 
     #check existing record
     household = HoKhau.query.filter_by(id=id).first()
@@ -219,6 +223,9 @@ def update_household(id):
     household.ngay_chuyen_di = ngay_chuyen_di
     household.ly_do_chuyen = ly_do_chuyen
     household.dien_tich = dien_tich
+    household.xe_may = xe_may
+    household.o_to = o_to
+
    
     try:
         db.session.commit()
@@ -247,7 +254,9 @@ def split_household(id):
     new_ngay_chuyen_di = args.get('new_ngay_chuyen_di')
     new_ly_do_chuyen = args.get('new_ly_do_chuyen')
     new_list_nhan_khau = args.get('new_list_nhan_khau')
-
+    new_dien_tich = args.get('new_dien_tich')
+    new_o_to = args.get('new_o_to')
+    new_xe_may = args.get('new_xe_may')
     new_id_ho_khau = str(uuid.uuid4().hex)
 
     #check existing record
@@ -298,7 +307,7 @@ def split_household(id):
     id_nguoi_thuc_hien = current_user.id_nguoi_dung
     
     new_household = HoKhau(id=new_id_ho_khau, ma_ho_khau=new_ma_ho_khau, id_chu_ho=new_id_chu_ho, ma_khu_vuc=new_ma_khu_vuc, dia_chi=new_dia_chi,
-                        ngay_lap=new_ngay_lap, ngay_chuyen_di=new_ngay_chuyen_di, ly_do_chuyen=new_ly_do_chuyen, id_nguoi_thuc_hien=id_nguoi_thuc_hien)
+                        ngay_lap=new_ngay_lap, ngay_chuyen_di=new_ngay_chuyen_di, ly_do_chuyen=new_ly_do_chuyen, id_nguoi_thuc_hien=id_nguoi_thuc_hien, dien_tich=new_dien_tich, xe_may=new_xe_may, o_to=new_o_to)
     
     try:
         db.session.add(new_household)
@@ -361,12 +370,17 @@ def delete_households():
         household = HoKhau.query.filter_by(id=id).first()
         try:
             db.session.delete(household)
+            #db.session.delete(household, synchronize_session = False)
+            
             member_list = ThanhVienCuaHo.query.filter_by(id_ho_khau=id)
             for member in member_list:
                 db.session.delete(member)
+                db.session.delete(member)
+            
             db.session.commit()
         except Exception as e:
             print(str(e))
+            #db.session.rollback()
             return return_response(code=HTTPStatus.INTERNAL_SERVER_ERROR, msg="Có lỗi xảy ra. Vui lòng thử lại sau.")
 
     return return_response(msg="Xóa hộ khẩu thành công!")
@@ -407,6 +421,9 @@ def get_household(id):
         'ngay_chuyen_di': household.ngay_chuyen_di,
         'ly_do_chuyen': household.ly_do_chuyen,
         'id_nguoi_thuc_hien': household.id_nguoi_thuc_hien,
+        'dien_tich': household.dien_tich,
+        'xe_may': household.xe_may,
+        'o_to': household.o_to,
         'thanh_vien_trong_ho': members
     }
 

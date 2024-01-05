@@ -1,0 +1,29 @@
+<div class="popup-header">
+  <p class="title">THÊM SỐ ĐIỆN NƯỚC</p>
+  <button mat-icon-button (click)="closePopup()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+  <form [formGroup]="form" style="display: grid; width: 100%;">
+    <div class="block">
+      <mat-form-field class="form-row" appearance="outline" color="accent">
+        <mat-label>Điền đường dẫn đến file Excel</mat-label>
+        <input matInput formControlName="link_excel" />
+      </mat-form-field>
+
+      <button mat-flat-button class="form-row" color="accent" style="color: white" (click)="onSelectFile()">
+        Chọn File Excel
+      </button>
+
+      <!-- Thêm input file (ẩn) để sử dụng cho việc chọn file -->
+      <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
+
+    </div>
+
+    <button mat-flat-button class="form-row" color="accent" style="color: white"
+      [disabled]="form.invalid" (click)="onSaveBtn()">LƯU</button>
+
+  </form>
+</div>

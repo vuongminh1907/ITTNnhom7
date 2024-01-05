@@ -8,18 +8,18 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
 import { BatBuocService } from '../../../services/bat-buoc.service';
 @Component({
-  selector: 'app-bat-buoc-add',
-  templateUrl: './bat-buoc-add.component.html',
-  styleUrls: ['./bat-buoc-add.component.scss']
+  selector: 'app-bat-buoc-add-money',
+  templateUrl: './bat-buoc-add-money.component.html',
+  styleUrls: ['./bat-buoc-add-money.component.scss']
 })
-export class BatBuocAddComponent implements OnInit {
+export class BatBuocAddMoneyComponent implements OnInit {
   readonly dinhDangSdt = /^[0-9]{9,11}$/;
   readonly dinhDangDiaChi = /^[0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\ ,\/-]+$/;
   readonly dinhDangSoHoChieu = /^[0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/;
 
   form!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<BatBuocAddComponent>,
+  constructor(public dialogRef: MatDialogRef<BatBuocAddMoneyComponent>,
     public dialog: MatDialog,
     private toastrService: ToastrService,
     private dongGopService: DongGopService,
@@ -37,17 +37,8 @@ export class BatBuocAddComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      month: new FormControl(''),
-      year: new FormControl(''),
-      mo_ta: new FormControl(''),
-      tien_dich_vu: new FormControl(''),
-      tien_moi_truong: new FormControl(''),
-      tien_quan_ly: new FormControl(''),
-      tien_giu_xe_2: new FormControl(''),
-      tien_giu_xe_4: new FormControl(''),
-      tien_dien: new FormControl(''),
-      tien_nuoc: new FormControl(''),
-      tien_bao_tri: new FormControl('')
+      so_tien_da_dong: new FormControl(''),
+      ngay_dong: new FormControl(''),
     }
     )
 
@@ -78,9 +69,12 @@ export class BatBuocAddComponent implements OnInit {
 
 
   save() {
-    const params = this.form.getRawValue();
-
-    this.batbuocService.createBatBuoc(params).subscribe(
+    const formValue = this.form.getRawValue();
+    let params = {
+      so_tien_da_dong: formValue['so_tien_da_dong'],
+      ngay_dong: moment(formValue['ngay_dong']).format('yyyy-MM-DD'),
+    }
+    this.batbuocService.updateBatBuocById(this.data.ma_ho_khau,this.data.thang,this.data.nam,params).subscribe(
       (res) => {
         this.toastrService.success(res.message)
       }, (error) => {

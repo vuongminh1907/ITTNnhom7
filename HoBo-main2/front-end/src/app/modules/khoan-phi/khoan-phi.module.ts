@@ -35,6 +35,9 @@ import { BatBuocListComponent } from './bat-buoc-list/bat-buoc-list.component';
 //import { HouseholdBookMemberComponent } from './household-book-member/household-book-member.component';
 //import { HouseholdEditComponent } from './household-edit/household-edit.component';
 import { BatBuocAddComponent } from './bat-buoc-add/bat-buoc-add.component';
+import { BatBuocAddMoneyComponent } from './bat-buoc-add-money/bat-buoc-add-money.component';
+import { BatBuocDienNuocComponent } from './bat-buoc-dien-nuoc/bat-buoc-dien-nuoc.component';
+import { BatBuocInfoComponent } from './bat-buoc-info/bat-buoc-info.component';
 const routes: Routes = [
   {
     path: '',
@@ -91,6 +94,9 @@ const routes: Routes = [
     HouseholdDonateDeleteComponent,
     BatBuocListComponent,
     BatBuocAddComponent,
+    BatBuocAddMoneyComponent,
+    BatBuocDienNuocComponent,
+    BatBuocInfoComponent,
     GeneralComponent,
   ],
   exports: [RouterModule],

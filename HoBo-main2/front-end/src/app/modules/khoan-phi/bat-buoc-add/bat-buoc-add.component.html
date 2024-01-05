@@ -9,44 +9,79 @@
   <form [formGroup]="form" style="display: grid; width: 100%;">
     <div class="block">
         <div class="row">
-          <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-form-field class="form-roww" appearance="outline" color="accent">
             <mat-label>Tháng</mat-label>
             <input matInput formControlName="month" />
           </mat-form-field>
-  
-          <div style="margin-right: 200px;"></div>
 
-          <mat-form-field class="form-row" appearance="outline" color="accent">
+          <mat-form-field class="form-roww" appearance="outline" color="accent">
             <mat-label>Năm</mat-label>
             <input matInput formControlName="year" />
           </mat-form-field>
     </div>
 
-    <mat-form-field class="form-row" appearance="outline" color="accent">
-      <mat-label>Tiền dịch vụ</mat-label>
-      <input matInput formControlName="tien_dich_vu" />
-    </mat-form-field>
-
-    <mat-form-field class="form-row" appearance="outline" color="accent">
-      <mat-label>Tiền Môi Trường</mat-label>
-      <input matInput formControlName="tien_moi_truong" />
-    </mat-form-field>
-
-
-    <mat-form-field class="form-row" appearance="outline" color="accent">
-      <mat-label>Tiền quản lý</mat-label>
-      <input matInput formControlName="tien_quan_ly" />
-    </mat-form-field>
-
+    
     <mat-form-field class="form-row" appearance="outline" color="accent">
       <mat-label>Mô Tả</mat-label>
       <input matInput formControlName="mo_ta" />
     </mat-form-field>
 
-    <mat-form-field class="form-row" appearance="outline" color="accent">
-      <mat-label>Tiền Bảo Vệ</mat-label>
-      <input matInput formControlName="tien_bao_ve" />
+    <div class="row">
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền dịch vụ</mat-label>
+      <input matInput formControlName="tien_dich_vu" />
+      <div matSuffix>.000 đ / m<sup>2</sup> </div>
     </mat-form-field>
+   
+
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Môi Trường</mat-label>
+      <input matInput formControlName="tien_moi_truong" />
+      <div matSuffix>.000 đ / m<sup>2</sup></div>
+    </mat-form-field>
+    </div> 
+
+    
+    <div class="row">
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Gửi Xe Máy</mat-label>
+      <input matInput formControlName="tien_giu_xe_2" />
+      <div matSuffix>.000 đ / xe</div>
+    </mat-form-field>
+
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Gửi Xe Ô Tô</mat-label>
+      <input matInput formControlName="tien_giu_xe_4" />
+      <div matSuffix>.000 đ / xe</div>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền quản lý</mat-label>
+      <input matInput formControlName="tien_quan_ly" />
+      <div matSuffix>.000 đ / m<sup>2</sup></div>
+    </mat-form-field>
+
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Bảo Trì</mat-label>
+      <input matInput formControlName="tien_bao_tri" />
+      <div matSuffix>.000 đ / m<sup>2</sup> </div>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Điện</mat-label>
+      <input matInput formControlName="tien_dien" />
+      <div matSuffix>.000 đ / kWh </div>
+    </mat-form-field>
+
+    <mat-form-field class="form-roww" appearance="outline" color="accent">
+      <mat-label>Tiền Nước</mat-label>
+      <input matInput formControlName="tien_nuoc" />
+      <div matSuffix>.000 đ / m<sup>3</sup> </div>
+    </mat-form-field>
+  </div>
     </div>
 
     <button mat-flat-button class="form-row" color="accent" style="color: white"

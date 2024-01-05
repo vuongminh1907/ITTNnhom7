@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from . import auth, user, user_group, household_book, cuoc_hop, \
             bien_ban_hop, household_member, statistics, khai_tu, tam_tru, tam_vang, moi_hop, nguoi_to_chuc, \
-            danh_sach_tham_du, danh_gia_gia_dinh_van_hoa, dong_gop, danh_sach_dong_gop
+            danh_sach_tham_du, danh_gia_gia_dinh_van_hoa, dong_gop, danh_sach_dong_gop, danh_sach_bat_buoc
 from .utils import load_env_var
 from .models import db
 from flask_login import LoginManager
@@ -31,6 +31,7 @@ def register_blueprints(app):
     app.register_blueprint(danh_gia_gia_dinh_van_hoa.api)
     app.register_blueprint(dong_gop.api)
     app.register_blueprint(danh_sach_dong_gop.api)
+    app.register_blueprint(danh_sach_bat_buoc.api)
 
 def create_app(test_config=None):
     # create and configure the app

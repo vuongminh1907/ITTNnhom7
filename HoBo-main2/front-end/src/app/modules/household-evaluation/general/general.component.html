@@ -1,5 +1,5 @@
 <div class="container">
-    <p style="font-size: 20px; justify-content: center; display: flex; margin-bottom: 32px;">ĐÁNH GIÁ GIA ĐÌNH VĂN HÓA</p>
+    <p style="font-size: 20px; justify-content: center; display: flex; margin-bottom: 32px;">ĐÁNH GIÁ GIA ĐÌNH TIÊU BIỂU</p>
     <div *ngIf="checkedList.length > 0">
         <mat-form-field class="example-form-field">
           <mat-label>Năm đánh giá</mat-label>
@@ -13,7 +13,7 @@
             <span *ngIf="year && !isNumber(year)">Năm đánh giá phải là một số</span>
           </mat-error>
           <mat-error *ngIf="!(year && !isNumber(year)) && (year && !checkValidYear(year))">
-            <span *ngIf="!(year && !isNumber(year)) && year && !checkValidYear(year)">Năm đánh giá phải từ 2018 đến hiện tại</span>
+            <span *ngIf="!(year && !isNumber(year)) && year && !checkValidYear(year)">Năm đánh giá phải từ 2023 đến hiện tại</span>
           </mat-error>
     </div>
     <div class="action-row">

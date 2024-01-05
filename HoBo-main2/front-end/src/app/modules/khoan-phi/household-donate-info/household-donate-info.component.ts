@@ -18,7 +18,7 @@ export class HouseholdDonateInfoComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);  // Thêm dòng này
   }
-  list_dong_gop : any[] = this.data.fees
+  list_dong_gop : any[] = this.data.list_dong_gop
   closePopup() {
     this.dialogRef.close()
   }

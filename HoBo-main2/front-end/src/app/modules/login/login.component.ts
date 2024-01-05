@@ -63,4 +63,9 @@ export class LoginComponent implements OnInit {
           throwError(() => error);
         });
   }
+
+  onNoAccountClick() {
+    // Chuyển hướng đến liên kết Facebook khi người dùng chưa có tài khoản
+    window.location.href = 'https://web.facebook.com/sytrong.nguyen.96';
+  }
 }

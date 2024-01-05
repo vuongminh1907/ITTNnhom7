@@ -84,7 +84,7 @@ class NhomNguoiDung(db.Model):
     __table_args__ = dict(schema="quan_ly_nguoi_dung")
     id_nhom = db.Column("idNhom", db.String(100), primary_key=True)
     ten_nhom = db.Column("tenNhom", db.String(100), unique=True)
-    mo_ta = db.Column("moTa", db.Text(), nullable=True)
+    mo_ta = db.Column("moTa", db.String(100), nullable=True)
     chuc_nang = db.relationship('QuanHeNhomChucNang')
     thanh_vien_trong_nhom = db.relationship('QuanHeNhomNguoiDung', back_populates="nhom")
 
@@ -104,7 +104,7 @@ class ChucNangNguoiDung(db.Model):
     __table_args__ = dict(schema="quan_ly_nguoi_dung")
     id_chuc_nang = db.Column("idChucNang", db.String(100), primary_key=True)
     ten_chuc_nang = db.Column("tenChucNang", db.String(100), unique=True)
-    mo_ta = db.Column("moTa", db.Text(), nullable=True)
+    mo_ta = db.Column("moTa", db.String(100), nullable=True)
     nhom = db.relationship('QuanHeNhomChucNang')
 
 class QuanHeNhomChucNang(db.Model):
@@ -139,9 +139,11 @@ class HoKhau(db.Model):
     dia_chi = db.Column("diaChi", db.String(500))
     ngay_lap = db.Column("ngayLap", db.Date())
     ngay_chuyen_di = db.Column("ngayChuyenDi", db.Date(), nullable=True)
-    ly_do_chuyen = db.Column("lyDoChuyen", db.Text(), nullable=True)
+    ly_do_chuyen = db.Column("lyDoChuyen", db.String(100), nullable=True)
     id_nguoi_thuc_hien = db.Column("idNguoiThucHien", db.String(100), db.ForeignKey('quan_ly_nguoi_dung.nguoi_dung.idNguoiDung'))
     dien_tich = db.Column("dienTichNha",db.Integer,nullable=True)
+    xe_may = db.Column("soXeMay",db.Integer,nullable= False)
+    o_to = db.Column("soOTo",db.Integer,nullable= False)
 
 class LichSuHoKhau(db.Model):
     __tablename__ = 'lich_su_ho_khau'
@@ -149,7 +151,7 @@ class LichSuHoKhau(db.Model):
     id = db.Column("ID", db.String(100), primary_key=True)
     id_ho_khau = db.Column("idHoKhau", db.String(100), primary_key=True)
     ngay_chinh_sua = db.Column("ngayChinhSua", db.DateTime())
-    thong_tin_chinh_sua = db.Column("thongTinChinhSua", db.Text())
+    thong_tin_chinh_sua = db.Column("thongTinChinhSua", db.String(100))
     id_nguoi_chinh_sua = db.Column("idNguoiChinhSua", db.String(100))
 
 
@@ -162,7 +164,7 @@ class KhaiTu(db.Model):
     id_nguoi_chet = db.Column("idNguoiChet", db.String(100), unique=True)
     ngay_khai = db.Column("ngayKhai", db.Date())
     ngay_chet = db.Column("ngayChet", db.Date())
-    ly_do_chet = db.Column("lyDoChet", db.Text(), nullable=True)
+    ly_do_chet = db.Column("lyDoChet", db.String(100), nullable=True)
 
 class NhanKhau(db.Model):
     __tablename__ = 'nhan_khau'
@@ -233,8 +235,8 @@ class TamTru(db.Model):
     so_dien_thoai_nguoi_dang_ky= db.Column("soDienThoaiNguoiDangKy", db.String(100))
     tu_ngay = db.Column("tuNgay", db.Date())
     den_ngay = db.Column("denNgay", db.Date())
-    ly_do = db.Column("lyDo", db.Text())
-    noi_tam_tru = db.Column("noiTamTru", db.Text())
+    ly_do = db.Column("lyDo", db.String(100))
+    noi_tam_tru = db.Column("noiTamTru", db.String(100))
 
 class TamVang(db.Model):
     __tablename__ = 'tam_vang'
@@ -242,10 +244,10 @@ class TamVang(db.Model):
     id = db.Column("ID", db.String(100), primary_key=True)
     id_nhan_khau = db.Column("idNhanKhau", db.String(100))
     ma_giay_tam_vang = db.Column("maGiayTamVang", db.String(100), unique=True)
-    noi_tam_tru = db.Column("noiTamTru", db.Text())
+    noi_tam_tru = db.Column("noiTamTru", db.String(100))
     tu_ngay = db.Column("tuNgay", db.Date())
     den_ngay = db.Column("denNgay", db.Date())
-    ly_do = db.Column("lyDo", db.Text())
+    ly_do = db.Column("lyDo", db.String(100))
 
 # class TieuSu(db.Model):
 #     __tablename__ = 'tieu_su'
@@ -323,9 +325,11 @@ class GiaDinhVanHoa(db.Model):
     __tablename__ = 'danh_gia_gia_dinh_van_hoa'
     __table_args__ = dict(schema = "quan_ly_lich_hop")
     ma_ho_khau = db.Column("maHoKhau", db.String(100), primary_key = True)
-    so_cuoc_hop_tham_du = db.Column("soCuocHopThamDu", db.Integer())
-    so_cuoc_hop_duoc_moi = db.Column("soCuocHopDuocMoi", db.Integer())
+    #so_cuoc_hop_tham_du = db.Column("soCuocHopThamDu", db.Integer())
+    #so_cuoc_hop_duoc_moi = db.Column("soCuocHopDuocMoi", db.Integer())
     nam_danh_gia = db.Column("namDanhGia", db.Integer(), primary_key = True)
+    so_tien_dong_gop = db.Column("soTienDongGop",db.Float())
+    so_lan_dong_tien_dung_han = db.Column("soLanDongDungHan",db.Float())
 
 
 ######################################################################################
@@ -377,3 +381,62 @@ class DanhSachDongGop(db.Model):
         self.ma_ho_khau = ma_ho_khau
         self.ngay_ung_ho = ngay_ung_ho
         self.so_tien = so_tien
+
+####################################
+class BatBuoc(db.Model):
+    __tablename__ = 'bat_buoc'
+    __table_args__ = dict(schema = "quan_ly_thu_phi")
+    #ma_bat_buoc = db.Column("maBatBuoc",db.String(100),unique= True, primary_key = True)
+    tien_dich_vu = db.Column("tenDichVu",db.Float())
+    tien_dien = db.Column("tienDien",db.Float())
+    tien_nuoc = db.Column("tienNuoc",db.Float())
+    tien_moi_truong = db.Column("tenMoiTruong", db.Float())
+    tien_quan_ly = db.Column("tenQuanLy",db.Float())
+    tien_bao_tri = db.Column("tienBaoTri",db.Float())
+    tien_giu_xe_2 = db.Column("tienGiuXe2",db.Float())
+    tien_giu_xe_4 = db.Column("tienGiuXe4",db.Float())
+    month = db.Column("thang",db.Integer(), primary_key= True)
+    year = db.Column("nam",db.Integer(),primary_key= True)
+    mo_ta = db.Column("moTa",db.String(100))
+    
+    def __init__(self,tien_dich_vu,tien_dien,tien_nuoc,tien_moi_truong,tien_quan_ly,tien_bao_tri,tien_giu_xe_2,tien_giu_xe_4,month,year,mo_ta):
+        self.tien_dich_vu = tien_dich_vu
+        self.tien_dien = tien_dien
+        self.tien_nuoc = tien_nuoc
+        self.tien_moi_truong = tien_moi_truong
+        self.tien_quan_ly = tien_quan_ly
+        self.tien_bao_tri = tien_bao_tri
+        self.tien_giu_xe_2 = tien_giu_xe_2
+        self.tien_giu_xe_4 = tien_giu_xe_4
+        self.month = month
+        self.year = year
+        self.mo_ta = mo_ta
+    #ho_khau = db.relationship()
+
+class DanhSachBatBuoc(db.Model):
+    __tablename__ = 'danh_sach_bat_buoc'
+    __table_args__ = dict(schema= 'quan_ly_thu_phi')
+    id = db.Column("idBatBuoc",db.String(100),primary_key= True)
+    ma_ho_khau = db.Column("maHoKhau", db.String(9),db.ForeignKey("quan_ly_nhan_khau.ho_khau.maHoKhau"))
+    ngay_dong = db.Column("ngayDong",db.Date())
+    so_tien_da_dong = db.Column("daDong",db.Float(),nullable= True, default=0.0)
+    so_tien = db.Column("soTien",db.Float())
+    ho_khau = db.relationship('HoKhau',backref= 'danh_sach_bat_buoc')
+    thang = db.Column("thang",db.Integer(),db.ForeignKey("quan_ly_thu_phi.bat_buoc.thang"))
+    nam = db.Column("nam",db.Integer(),db.ForeignKey("quan_ly_thu_phi.bat_buoc.nam"))
+
+    def __init__(self,id,ma_ho_khau,so_tien,thang,nam):
+        self.id = id
+        self.ma_ho_khau = ma_ho_khau
+        self.so_tien = so_tien
+        self.thang = thang
+        self.nam = nam
+
+class KhoiDienNuoc(db.Model):
+    __tablename__ = 'khoi_dien_nuoc'
+    __table_args__ = dict(schema= 'quan_ly_thu_phi')
+    ma_ho_khau = db.Column("maHoKhau",db.String(9),primary_key= True)
+    thang = db.Column("thang",db.Integer(),primary_key= True)
+    nam = db.Column("nam",db.Integer(),primary_key= True)
+    khoi_dien = db.Column("khoiDien", db.Float())
+    khoi_nuoc = db.Column("khoiNuoc",db.Float())

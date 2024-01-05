@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmPopupComponent } from '../../confirm-popup/confirm-popup.component';
 import { DongGopService } from './../../../services/dong-gop.service';
 import { UserService } from 'src/app/services/user.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-household-donate-add',
   templateUrl: './household-donate-add.component.html',
@@ -54,7 +55,7 @@ export class HouseholdDonateAddComponent implements OnInit {
   initForm() {
     this.form = new FormGroup({
       ma_dong_gop: new FormControl([], Validators.required),
-      //ngay_ung_ho: new FormControl('', Validators.required),
+      ngay_ung_ho: new FormControl({}, Validators.required),
       so_tien: new FormControl('', Validators.required)
     });
   }
@@ -88,12 +89,12 @@ export class HouseholdDonateAddComponent implements OnInit {
     //   return;
     // }
 
-    const params = this.form.getRawValue();
-    // const  params = {
-    //   ma_dong_gop: formValue['ma_dong_gop'],
-    //   ngay_nop: formValue['ngay_nop'],
-    //   so_tien: formValue['so_tien']
-    // };
+    const formValue = this.form.getRawValue();
+    let params = {
+      ma_dong_gop: formValue['ma_dong_gop'],
+      so_tien: formValue['so_tien'],
+      ngay_ung_ho: moment(formValue['ngay_ung_ho']).format('yyyy-MM-DD')
+    }
 
     this.danhsachDongGopService.createHoDongGopById(this.selectedHoKhauId, params).subscribe(
       (res) => {

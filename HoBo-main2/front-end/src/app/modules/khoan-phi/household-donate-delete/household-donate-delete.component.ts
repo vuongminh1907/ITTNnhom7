@@ -37,7 +37,7 @@ export class HouseholdDonateDeleteComponent implements OnInit {
     this.selectedHoKhauId = this.data.selectedHoKhauId;
     this.danhsachDongGopService.getHoDongGopById(this.selectedHoKhauId).subscribe(
       (res) => {
-        this.daDongGop = res.data.fees;
+        this.daDongGop = res.data.list_dong_gop;
       },
       (error) => {
         console.log(error);

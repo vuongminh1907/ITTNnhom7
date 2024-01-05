@@ -75,6 +75,14 @@ export class HouseholdAddComponent implements OnInit {
       dien_tich: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      xe_may: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      o_to: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
       ]))
 
     });
@@ -110,6 +118,8 @@ export class HouseholdAddComponent implements OnInit {
       ngay_chuyen_di: !!formValue['ngay_chuyen_di'] ? moment(new Date()).format('yyyy-MM-DD') : null,
       ly_do_chuyen: formValue['ly_do_chuyen'],
       dia_chi: formValue['dia_chi'],
+      o_to: formValue['o_to'],
+      xe_may: formValue['xe_may'],
       dien_tich: formValue['dien_tich'], // Thêm trường này
       list_nhan_khau: this.list_nhan_khau
     };

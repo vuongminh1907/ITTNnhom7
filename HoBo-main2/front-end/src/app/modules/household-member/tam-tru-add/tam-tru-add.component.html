@@ -33,7 +33,7 @@
 
     <mat-form-field class="form-row" appearance="outline" color="accent">
       <mat-label>Số điện thoại người đăng ký</mat-label>
-      <input matInput placeholder="Ex: trongnon123" formControlName="so_dien_thoai_nguoi_dang_ky" />
+      <input matInput placeholder="Ex: 0813797203" formControlName="so_dien_thoai_nguoi_dang_ky" />
       <mat-error
         *ngIf="form.controls['so_dien_thoai_nguoi_dang_ky'].touched && !form.controls['so_dien_thoai_nguoi_dang_ky'].valid">
         <span *ngIf="form.controls['so_dien_thoai_nguoi_dang_ky'].errors?.['required']">Bạn chưa nhập số điện thoại

@@ -53,22 +53,25 @@ def get_fee_household(id):
     
     dong_gops = household.danh_sach_dong_gop
     fees = []
-    default_fee_types = DongGop.query.all()
-    for default_fee_type in default_fee_types:
-        fee_data = {
-            'ma_dong_gop': default_fee_type.ma_dong_gop,
-            'ten_dong_gop': default_fee_type.ten_dong_gop,
-            'so_tien': 0,  # Số tiền mặc định là 0
-            'ngay_ung_ho': None  # Bạn có thể điền vào ngày nếu có sẵn
-        }
-
-    # Nếu có ít nhất một khoản đóng góp trong danh sách đã đóng, cập nhật số tiền tương ứng
-        for dong_gop_ in dong_gops:
-            if dong_gop_.ma_dong_gop == default_fee_type.ma_dong_gop:
-                fee_data['so_tien'] = dong_gop_.so_tien
-                fee_data['ngay_ung_ho'] = dong_gop_.ngay_ung_ho
-
-        fees.append(fee_data)
+  
+    for dong_gop_ in dong_gops:
+        if dong_gop_:
+            fee_type = DongGop.query.filter_by(ma_dong_gop= dong_gop_.ma_dong_gop).first()
+            fee_data = {
+                'ma_dong_gop' : dong_gop_.ma_dong_gop,
+                'ten_dong_gop' : fee_type.ten_dong_gop,
+                'so_tien' : dong_gop_.so_tien,
+                'ngay_ung_ho' : dong_gop_.ngay_ung_ho
+            }
+            fees.append(fee_data)
+        else:
+            fee_data = {
+                'ma_dong_gop' : "Chưa có",
+                'ten_dong_gop' : "null",
+                'so_tien' : 0,
+                'ngay_ung_ho' : "null"
+            }
+            fees.append(fee_data)
 
     print(fees)
     chu_ho = NhanKhau.query.filter_by(ID= household.id_chu_ho).first()
@@ -88,9 +91,9 @@ def update_fee_household(id):
     except Exception as e:
         return return_response(code=HTTPStatus.UNPROCESSABLE_ENTITY,msg=str(e))
     
-    so_tien = args.get('so_tien')
+    so_tien = int(args.get('so_tien'))
     ma_dong_gop = args.get('ma_dong_gop')
-    #ngay_ung_ho = args.get('ngay_ung_ho')
+    ngay_ung_ho = args.get('ngay_ung_ho')
     household = HoKhau.query.filter_by(id=id).first()
     if not household:
         return return_response(code=500, msg="Hộ khẩu không tồn tại hoặc đã bị xóa.")
@@ -99,8 +102,9 @@ def update_fee_household(id):
     id_dong_gop = str(uuid.uuid4().hex)
     if dong_gop:
         dong_gop.so_tien += so_tien
+        dong_gop.ngay_ung_ho = ngay_ung_ho
     else:
-        ngay_ung_ho = date.today()
+        ngay_ung_ho = ngay_ung_ho
         new_dong_gop = DanhSachDongGop(id_dong_gop=id_dong_gop,ma_dong_gop=ma_dong_gop,ma_ho_khau=household.ma_ho_khau,ngay_ung_ho=ngay_ung_ho, so_tien=so_tien)
         db.session.add(new_dong_gop)
     

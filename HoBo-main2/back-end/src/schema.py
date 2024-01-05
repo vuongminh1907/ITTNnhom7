@@ -84,6 +84,8 @@ class ThongTinHoKhau(Schema):
     ly_do_chuyen = fields.String(missing=None, allow_none=True)
     list_nhan_khau = fields.List(fields.Nested(ThongTinQuanHeTrongHo), required=True, allow_none=True)
     dien_tich = fields.Integer(required= False)
+    xe_may = fields.Integer(required= False)
+    o_to = fields.Integer(required= False)
 
 class ThongTinThayDoiHoKhau(Schema):
     id_chu_ho = fields.String(required=True)
@@ -101,6 +103,9 @@ class ThongTinTachHoKhau(Schema):
     new_ngay_lap = fields.Date(required=True)
     new_ngay_chuyen_di = fields.Date(required=True)
     new_ly_do_chuyen = fields.String(required=True)
+    new_o_to = fields.Integer(required= False)
+    new_xe_may = fields.Integer(required= False)
+    new_dien_tich = fields.Integer(required= False)
     new_list_nhan_khau = fields.List(fields.Nested(ThongTinQuanHeTrongHo), required=True, allow_none=True)
 
 class ThongTinKhaiTu(Schema):
@@ -213,7 +218,7 @@ class ThemDongGop(Schema):
     han_nop = fields.Date(required = True)
     
 class XoaDongGop(Schema):
-    ma_list = fields.List(fields.String(), required=True)
+    id_list = fields.List(fields.String(), required=True)
 
 class ThaydoiDongGop(Schema):
     ten_dong_gop = fields.String(required=True)
@@ -224,4 +229,27 @@ class ThaydoiDongGop(Schema):
 class DongGop(Schema):
     so_tien = fields.Integer(required=True)
     ma_dong_gop = fields.String(required=True)
-    ngay_ung_ho = fields.Date()
+    ngay_ung_ho = fields.Date(required= True)
+##########################
+class ThemPhiBatBuoc(Schema):
+    tien_dich_vu = fields.Float(required= True)
+    tien_dien = fields.Float(required= True)
+    tien_nuoc = fields.Float(required= True)
+    tien_moi_truong = fields.Float(required= True)
+    tien_quan_ly = fields.Float(required= True)
+    tien_bao_tri = fields.Float(required= True)
+    tien_giu_xe_2 = fields.Float(required= True)
+    tien_giu_xe_4 = fields.Float(required=True)
+    month = fields.Integer(required= True)
+    year = fields.Integer(required= True)
+    mo_ta = fields.String(required= True)   
+
+class ThemLinkExcel(Schema):
+    link_excel = fields.String(required=True)
+
+class NopTienBatBuoc(Schema):
+    so_tien_da_dong = fields.Float(required= True)
+    ngay_dong = fields.Date(required= True)
+class SearchMonthYear(Schema):
+    thang = fields.Integer(required= True)
+    nam = fields.Integer(required= True)

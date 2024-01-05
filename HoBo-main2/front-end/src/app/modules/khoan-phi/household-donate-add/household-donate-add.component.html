@@ -20,7 +20,7 @@
         <input matInput formControlName="so_tien" />
       </mat-form-field>
 
-      <!-- <mat-form-field class="form-row" appearance="outline" color="accent">
+      <mat-form-field class="form-row" appearance="outline" color="accent">
         <mat-label>Ngày ủng hộ</mat-label>
         <input matInput [matDatepicker]="dp" formControlName="ngay_ung_ho">
         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -33,7 +33,7 @@
         <mat-error *ngIf="form.controls['ngay_ung_ho'].touched && !form.controls['ngay_ung_ho'].valid">
           <span *ngIf="form.controls['ngay_ung_ho'].errors?.['required']">Bạn chưa nhập ngày</span>
         </mat-error>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <button mat-flat-button class="form-row" color="accent" style="color: white"
         [disabled]="form.invalid || form.pristine" (click)="onSaveBtn()">LƯU</button>

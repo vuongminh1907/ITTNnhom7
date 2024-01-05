@@ -67,7 +67,19 @@ export class HouseholdSplitComponent implements OnInit {
       ])),
       new_ngay_lap: new FormControl('', Validators.required),
       new_ngay_chuyen_di: new FormControl(''),
-      new_ly_do_chuyen: new FormControl('')
+      new_ly_do_chuyen: new FormControl(''),
+      new_dien_tich: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      new_xe_may: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ])),
+      new_o_to: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.dinhDangSo), // Sử dụng dinhDangSo cho số nguyên
+      ]))
     });
   }
 
@@ -136,6 +148,9 @@ export class HouseholdSplitComponent implements OnInit {
       new_ngay_chuyen_di: !!formValue['new_ngay_chuyen_di'] ? moment(new Date()).format('yyyy-MM-DD') : null,
       new_ly_do_chuyen: formValue['new_ly_do_chuyen'],
       new_dia_chi: formValue['new_dia_chi'],
+      new_dien_tich: formValue['new_dien_tich'],
+      new_o_to: formValue['new_o_to'],
+      new_xe_may: formValue['new_xe_may'],
       new_list_nhan_khau: this.list_nhan_khau
     };
 
