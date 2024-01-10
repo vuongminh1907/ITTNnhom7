@@ -218,7 +218,7 @@ class ThemDongGop(Schema):
     han_nop = fields.Date(required = True)
     
 class XoaDongGop(Schema):
-    id_list = fields.List(fields.String(), required=True)
+    ma_list = fields.List(fields.String(), required=True)
 
 class ThaydoiDongGop(Schema):
     ten_dong_gop = fields.String(required=True)

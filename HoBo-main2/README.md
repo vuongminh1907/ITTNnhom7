@@ -1,11 +1,9 @@
 # HoBo
  
  Members:  
- 1. Tran Van Ngoc - 20200443
- 2. Tran Thanh Hien - 20204744
- 3. Phuong Thi Thuy Linh - 20204761
- 4. Le Thanh Nam - 20204766
- 5. Le Ngoc Hoa - 20200234
+ 1. Vuong Dinh Minh - 20210610
+ 2. Nguyen Sy Trong - 20210866
+ 3. Nguyen Duc Hieu - 20210123
 
 Cài `virtualenv`:
 

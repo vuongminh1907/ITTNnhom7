@@ -2,7 +2,7 @@
   <div class="action-row">
     <button mat-flat-button color="accent" (click)="onAdd()" style="color: white"  *ngIf="checkedList.length == 0">Khai tử</button>
     <div *ngIf="checkedList.length > 0">
-      <span style="color: #fb5a47; margin-right: 12px;">{{checkedList.length}} tạm trú được chọn</span>
+      <span style="color: #fb5a47; margin-right: 12px;">{{checkedList.length}} khai tử được chọn</span>
       <button mat-flat-button color="warn" (click)="onDelete(checkedList)"
         style="color: white">Xoá</button>
     </div>
